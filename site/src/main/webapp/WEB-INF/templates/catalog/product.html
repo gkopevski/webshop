@@ -17,9 +17,6 @@
         <section id="left_column" th:object="${product}">
         
             <div id="product_content" class="product_container">
-            	<a href="/mycompany/paypal/checkout">
-				    <img src="img/paypal.gif" alt="Pay with Paypal" width="100" />
-				</a>
                 <h2 th:text="*{name}"></h2>
                 
                 <div id="maker" th:text="*{manufacturer}"></div>
@@ -56,6 +53,9 @@
                         </div>
             <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
                     </div>
+            	<a href="/paypal/checkout">
+				    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"/>
+				</a>
                 </blc:form>
     
                 <div th:if="${customer.loggedIn}" th:remove="tag">
