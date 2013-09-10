@@ -159,4 +159,11 @@
     <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
         <property name="additionalBundleFiles" ref="blJsFileMap"/>
     </bean>
+    
+    <bean id="blPasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+    <bean id="blAdminSecurityService" class="org.broadleafcommerce.openadmin.server.security.service.AdminSecurityServiceImpl">
+        <!-- this value must match what you have in applicationContext-security -->
+        <property name="salt" value="mir" />
+    </bean>
+    
 </beans>

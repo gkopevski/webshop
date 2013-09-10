@@ -103,4 +103,20 @@
         <property name="alwaysUseDefaultTargetUrl" value="false" />
     </bean>
     
+    
+   <bean id="blPasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+   <sec:authentication-manager alias="blAuthenticationManager">
+      <sec:authentication-provider user-service-ref="blUserDetailsService">
+         <sec:password-encoder ref="blPasswordEncoder">
+            <sec:salt-source system-wide="mir!" />
+         </sec:password-encoder>
+      </sec:authentication-provider>
+   </sec:authentication-manager>
+      
+   <!-- Redefine blCustomerService to configure salt -->
+   <bean id="blCustomerService" class="org.broadleafcommerce.profile.core.service.CustomerServiceImpl">
+      <property name="salt" value="mir!" />
+   </bean>
+    
+    
 </beans>
