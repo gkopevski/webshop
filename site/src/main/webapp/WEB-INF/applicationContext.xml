@@ -197,4 +197,32 @@
         <property name="locations" ref="blCssLocations"/>
     </bean>
     
+    
+    <!-- Mail options for using velocity -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host"><value>192.168.1.12</value></property>
+        <property name="port"><value>25</value></property>
+        <property name="protocol"><value>smtp</value></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="registrationService" class="com.mycompany.api.service.email.RegistrationService">
+      <property name="mailSender" ref="mailSender"/>
+      <property name="velocityEngine" ref="velocityEngine"/>
+   </bean>
+   
+   <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+      <property name="velocityProperties">
+         <value>
+          resource.loader=class
+          class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+         </value>
+      </property>
+   </bean>
+    
 </beans>

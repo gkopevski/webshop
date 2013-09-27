@@ -18,6 +18,7 @@ package com.mycompany.controller.account;
 
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
+import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.api.service.email.RegistrationService;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +40,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/register")
 public class RegisterController extends BroadleafRegisterController {
     
+	@Resource(name = "registrationService")
+	RegistrationService registrationEmailService;
+	
     @RequestMapping(method=RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm) {
@@ -44,7 +51,18 @@ public class RegisterController extends BroadleafRegisterController {
     
     @RequestMapping(method=RequestMethod.POST)
     public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors) throws ServiceException {
+            @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors) throws Exception {
+    	
+    	Customer customer = registerCustomerForm.getCustomer();
+        
+//    	RegistrationService registraiton = new RegistrationService();
+    	
+    	registrationEmailService.register(customer);
+    	
+//        registrationEmailService.sendRegistrationEmail(customer);
+    	
+    	
+    	
         return super.processRegister(registerCustomerForm, errors, request, response, model);
     }
     

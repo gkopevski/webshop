@@ -8,10 +8,11 @@
 
     <!-- A dummy mail sender has been set to send emails for testing purposes only
          To view the emails sent use "DevNull SMTP" (download separately) with the following setting:
-            Port: 30000 -->
-    <!-- <bean id="blMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host"><value>localhost</value></property>
-        <property name="port"><value>30000</value></property>
+            Port: 30000
+    
+    <bean id="blMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host"><value>192.168.1.12</value></property>
+        <property name="port"><value>25</value></property>
         <property name="protocol"><value>smtp</value></property>
         <property name="javaMailProperties">
             <props>
@@ -20,7 +21,8 @@
             </props>
         </property>
     </bean>
-
+     -->
+ <!--
     <bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
         <property name="prefix" value="emailTemplates/" />
         <property name="suffix" value=".html" />
