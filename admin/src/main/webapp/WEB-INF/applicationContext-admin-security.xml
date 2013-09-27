@@ -76,7 +76,7 @@
     <sec:authentication-manager alias="blAdminAuthenticationManager">
         <sec:authentication-provider user-service-ref="blAdminUserDetailsService">
             <sec:password-encoder ref="blPasswordEncoder">
-            	<sec:salt-source system-wide="mir" />
+            	<sec:salt-source system-wide="mir!" />
             </sec:password-encoder>
         </sec:authentication-provider>
     </sec:authentication-manager>

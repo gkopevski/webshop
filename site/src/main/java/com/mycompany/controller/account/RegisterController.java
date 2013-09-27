@@ -16,7 +16,10 @@
 
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.common.exception.ServiceException;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
 import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
@@ -28,10 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.api.service.email.RegistrationService;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The controller responsible for registering a customer
@@ -52,16 +51,10 @@ public class RegisterController extends BroadleafRegisterController {
     @RequestMapping(method=RequestMethod.POST)
     public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors) throws Exception {
-    	
+    	//GK: needs to be overdied this method so it can sends and register the user correctly
     	Customer customer = registerCustomerForm.getCustomer();
         
-//    	RegistrationService registraiton = new RegistrationService();
-    	
     	registrationEmailService.register(customer);
-    	
-//        registrationEmailService.sendRegistrationEmail(customer);
-    	
-    	
     	
         return super.processRegister(registerCustomerForm, errors, request, response, model);
     }

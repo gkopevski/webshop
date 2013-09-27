@@ -38,10 +38,7 @@ public class RegistrationService implements ApplicationContextAware{
 	   }
 
 	   public void register(Customer customer) throws Exception{
-
 	      // Do the registration logic...
-		  setMailSender((JavaMailSender) applicationContext.getBean("mailSender"));
-		  setVelocityEngine((VelocityEngine) applicationContext.getBean("velocityEngine"));
 	      sendConfirmationEmail(customer);
 	   }
 

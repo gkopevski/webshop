@@ -163,7 +163,7 @@
     <bean id="blPasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
     <bean id="blAdminSecurityService" class="org.broadleafcommerce.openadmin.server.security.service.AdminSecurityServiceImpl">
         <!-- this value must match what you have in applicationContext-security -->
-        <property name="salt" value="mir" />
+        <property name="salt" value="mir!" />
     </bean>
     
 </beans>

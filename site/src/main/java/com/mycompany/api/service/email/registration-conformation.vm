@@ -1,10 +1,9 @@
-# in the com/foo/package
 <html>
 <body>
 <h3>Hi ${customer.firstName}, welcome to the Chipping Sodbury On-the-Hill message boards!</h3>
 
 <div>
-   Your email address is <a href="mailto:${customer.firstName}">${customer.firstName}</a>.
+   Your email address is <a href="mailto:${customer.email}">${customer.lastName}</a>.
 </div>
 </body>
 
