@@ -1,0 +1,10 @@
+<html>
+<body>
+<h3>Hey ${customer.firstName}, you just ordered!</h3>
+
+<div>
+   Your email address is <a href="mailto:${customer.email}">${customer.lastName}</a>.
+</div>
+</body>
+
+</html>
