@@ -18,10 +18,14 @@ package com.mycompany.controller.checkout;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
+import org.broadleafcommerce.core.checkout.service.CheckoutService;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
+import org.broadleafcommerce.core.checkout.service.workflow.CheckoutResponse;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.payment.domain.CreditCardPaymentInfo;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
+import org.broadleafcommerce.core.payment.domain.Referenced;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
@@ -42,10 +46,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/checkout")
@@ -57,6 +64,12 @@ public class CheckoutController extends BroadleafCheckoutController {
     * associated with it. It also assumes that there is only one payment info of type 
     * credit card on the order. If so, then the billing address will be pre-populated.
     */
+	
+	@Resource(name = "mirCheckoutService")
+    protected CheckoutService mirCheckoutService;
+	
+	
+	
     @RequestMapping("")
     public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
@@ -120,7 +133,8 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
-        return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+//        return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+        return completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
     protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
@@ -162,5 +176,54 @@ public class CheckoutController extends BroadleafCheckoutController {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
     }
+    
+    @Override
+    public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+            BillingInfoForm billingForm, BindingResult result) throws CheckoutException, PricingException, ServiceException {
+
+        Order cart = CartState.getCart();
+        if (cart != null) {
+            Map<PaymentInfo, Referenced> payments = new HashMap<PaymentInfo, Referenced>();
+
+            orderService.removePaymentsFromOrder(cart, PaymentInfoType.CREDIT_CARD);
+
+            if (billingForm.isUseShippingAddress()){
+                copyShippingAddressToBillingAddress(cart, billingForm);
+            }
+
+            billingInfoFormValidator.validate(billingForm, result);
+            if (result.hasErrors()) {
+                populateModelWithShippingReferenceData(request, model);
+                return getCheckoutView();
+            }
+
+            PaymentInfo ccInfo = creditCardPaymentInfoFactory.constructPaymentInfo(cart);
+            ccInfo.setAddress(billingForm.getAddress());
+            cart.getPaymentInfos().add(ccInfo);
+
+            CreditCardPaymentInfo ccReference = (CreditCardPaymentInfo) securePaymentInfoService.create(PaymentInfoType.CREDIT_CARD);
+            ccReference.setNameOnCard(billingForm.getCreditCardName());
+            ccReference.setReferenceNumber(ccInfo.getReferenceNumber());
+            ccReference.setPan(billingForm.getCreditCardNumber());
+            ccReference.setCvvCode(billingForm.getCreditCardCvvCode());
+            ccReference.setExpirationMonth(Integer.parseInt(billingForm.getCreditCardExpMonth()));
+            ccReference.setExpirationYear(Integer.parseInt(billingForm.getCreditCardExpYear()));
+
+            payments.put(ccInfo, ccReference);
+
+            CheckoutResponse checkoutResponse = mirCheckoutService.performCheckout(cart, payments);
+
+            if (!checkoutResponse.getPaymentResponse().getResponseItems().get(ccInfo).getTransactionSuccess()){
+                populateModelWithShippingReferenceData(request, model);
+                result.rejectValue("creditCardNumber", "payment.exception", null, null);
+                return getCheckoutView();
+            }
+
+            return getConfirmationView(cart.getOrderNumber());
+        }
+
+        return getCartPageRedirect();
+    }    
+    
     
 }

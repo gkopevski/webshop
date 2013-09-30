@@ -97,13 +97,14 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
             vars.put("order", order);
             emailService.sendTemplateEmail(customer.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
             
-            sendOrderConfirmationEmailMIR(customer);
+            sendCustomerOrderConfirmationEmailMIR(customer);
+            sendAdminOrderConfirmationEmailMIR(customer);
         }
         
         
     }
     
-    private void sendOrderConfirmationEmailMIR(final Customer customer) throws Exception {
+    private void sendCustomerOrderConfirmationEmailMIR(final Customer customer) throws Exception {
 	      MimeMessagePreparator preparator = new MimeMessagePreparator() {
 	         public void prepare(MimeMessage mimeMessage) throws Exception {
 	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
@@ -116,7 +117,22 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
 	         }
 	      };
 	      this.mailSender.send(preparator);
-	   }
+	}
+    
+    private void sendAdminOrderConfirmationEmailMIR(final Customer customer) throws Exception {
+	      MimeMessagePreparator preparator = new MimeMessagePreparator() {
+	         public void prepare(MimeMessage mimeMessage) throws Exception {
+	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+	            message.setTo(customer.getEmailAddress());
+	            message.setFrom("gkopevski@gmail.com"); // could be parameterized...
+	            Map model = new HashMap();
+	            model.put("customer", customer);
+	            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "com/mycompany/api/service/email/order-confirmation.vm", model);
+	            message.setText(text, true);
+	         }
+	      };
+	      this.mailSender.send(preparator);
+	}
 
     public CustomerDao getCustomerDao() {
         return customerDao;
