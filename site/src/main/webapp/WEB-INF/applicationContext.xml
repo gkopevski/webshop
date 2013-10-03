@@ -269,19 +269,28 @@
 	    <property name="orderAcceptanceState" value="TX"/>
 	</bean>
 	
-	<bean id="mirCheckoutWorkflow" class="com.mycompany.controller.checkout.MIRSequenceProcessor">
-	    <property name="processContextFactory">
-	        <bean class="com.mycompany.controller.checkout.MIRCheckoutProcessContextFactory"/>
-	    </property>
-	    <property name="activities">
-	        <list>
-	            <bean class="com.mycompany.controller.checkout.MIRVerifyCustomerMaxOfferUsesActivity"/>
-	            <bean class="com.mycompany.controller.checkout.MIRPaymentServiceActivity"/>
-	            <bean class="com.mycompany.controller.checkout.MIRRecordOfferUsageActivity"/>
-	            <bean class="com.mycompany.controller.checkout.MIRCompleteOrderActivity"/>
-	        </list>
-	    </property>
-	    <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
-	</bean>
+	
+	
+<!-- 	<bean p:order="1000" id="MIRVerifyCustomerMaxOfferUsesActivity" class="com.mycompany.controller.checkout.MIRVerifyCustomerMaxOfferUsesActivity" /> -->
+<!--     <bean p:order="2000" id="MIRPaymentServiceActivity" class="com.mycompany.controller.checkout.MIRPaymentServiceActivity" /> -->
+<!--     <bean p:order="3000" id="MIRRecordOfferUsageActivity" class="com.mycompany.controller.checkout.MIRRecordOfferUsageActivity" /> -->
+<!--     <bean p:order="4000" id="MIRCompleteOrderActivity" class="com.mycompany.controller.checkout.MIRCompleteOrderActivity" /> -->
+	
+	
+<!-- 	<bean id="mirCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor"> -->
+<!-- 	<bean id="mirCheckoutWorkflow" class="com.mycompany.controller.checkout.MIRSequenceProcessor"> --> 
+<!-- 	    <property name="processContextFactory"> -->
+<!-- 	        <bean class="com.mycompany.controller.checkout.MIRCheckoutProcessContextFactory"/> -->
+<!-- 	    </property> -->
+<!-- 	    <property name="activities"> -->
+<!-- 	        <list> -->
+<!-- 	            <ref bean="MIRVerifyCustomerMaxOfferUsesActivity"/> -->
+<!-- 	            <ref bean="MIRPaymentServiceActivity"/> -->
+<!-- 	            <ref bean="MIRRecordOfferUsageActivity"/> -->
+<!-- 	            <ref bean="MIRCompleteOrderActivity" /> -->
+<!-- 	        </list> -->
+<!-- 	    </property> -->
+<!-- 	    <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/> -->
+<!-- 	</bean> -->
     
 </beans>

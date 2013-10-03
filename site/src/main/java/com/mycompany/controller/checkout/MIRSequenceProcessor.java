@@ -32,7 +32,7 @@ import org.broadleafcommerce.core.workflow.state.ActivityStateManagerImpl;
 import org.broadleafcommerce.core.workflow.state.RollbackStateLocal;
 import org.springframework.stereotype.Service;
 
-@Service("mirCheckoutWorkflow")
+//@Service("mirCheckoutWorkflow")
 public class MIRSequenceProcessor extends BaseProcessor {
 
     private static final Log LOG = LogFactory.getLog(MIRSequenceProcessor.class);

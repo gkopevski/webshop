@@ -33,11 +33,11 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("mirCheckoutService")
+//@Service("mirCheckoutService")
 public class MIRCheckoutService implements CheckoutService {
 
-    @Resource(name="mirCheckoutWorkflow")
-    protected MIRSequenceProcessor checkoutWorkflow;
+    @Resource(name="checkoutWorkflow")
+    protected SequenceProcessor checkoutWorkflow;
 
     @Resource(name="blOrderService")
     protected OrderService orderService;
