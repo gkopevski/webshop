@@ -7,6 +7,8 @@
         <artifactId>ecommerce-website</artifactId>
         <version>1.0</version>
     </parent>
+    
+    
     <artifactId>site</artifactId>
     <packaging>war</packaging>
     <name>site</name>
@@ -137,5 +139,9 @@
 		    <groupId>org.broadleafcommerce</groupId>
 		    <artifactId>broadleaf-paypal</artifactId>
 		</dependency>
+		<dependency>
+	  		<groupId>org.broadleafcommerce</groupId>
+	  		<artifactId>broadleaf-cybersource</artifactId>
+	  	</dependency>
     </dependencies>
 </project>
