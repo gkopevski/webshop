@@ -41,7 +41,9 @@ import org.broadleafcommerce.vendor.cybersource.service.payment.type.CyberSource
  * @author jfischer
  *
  */
-public class CyberSourceCreditCardModule extends CyberSourceModule implements PaymentModule {
+public class MIRCyberSourceCreditCardModule extends CyberSourceModule 
+//implements PaymentModule 
+{
 	
 	private CyberSourceServiceManager serviceManager;
 
@@ -70,7 +72,9 @@ public class CyberSourceCreditCardModule extends CyberSourceModule implements Pa
         PaymentResponseItem responseItem = buildBasicResponse(response);
 		responseItem.setAvsCode(response.getAuthResponse().getAvsCode());
 		responseItem.setAuthorizationCode(response.getAuthResponse().getAuthorizationCode());
-		responseItem.setAmountPaid(response.getAuthResponse().getAmount());
+		//VK: changed from setAmount or smth which is deprecated to this one
+		responseItem.setTransactionAmount(response.getAuthResponse().getAmount());
+
 		responseItem.setProcessorResponseCode(response.getAuthResponse().getProcessorResponse());
 		responseItem.setProcessorResponseText(response.getAuthResponse().getProcessorResponse());
         
@@ -186,7 +190,8 @@ public class CyberSourceCreditCardModule extends CyberSourceModule implements Pa
 		responseItem.setTransactionSuccess(response.getReasonCode().intValue() == 100);
 		responseItem.getAdditionalFields().put("requestId", response.getRequestID());
 		responseItem.getAdditionalFields().put("requestToken", response.getRequestToken());
-		responseItem.setTransactionAmount(response.getAuthResponse().getAmount());
+		//VK: i added this and then moved it one level up to the parent calling function
+		//responseItem.setTransactionAmount(response.getAuthResponse().getAmount());
 		
 		return responseItem;
 	}
