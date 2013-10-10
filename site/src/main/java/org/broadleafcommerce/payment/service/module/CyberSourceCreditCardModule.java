@@ -186,6 +186,7 @@ public class CyberSourceCreditCardModule extends CyberSourceModule implements Pa
 		responseItem.setTransactionSuccess(response.getReasonCode().intValue() == 100);
 		responseItem.getAdditionalFields().put("requestId", response.getRequestID());
 		responseItem.getAdditionalFields().put("requestToken", response.getRequestToken());
+		responseItem.setTransactionAmount(response.getAuthResponse().getAmount());
 		
 		return responseItem;
 	}
