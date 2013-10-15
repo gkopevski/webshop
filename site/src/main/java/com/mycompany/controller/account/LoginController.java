@@ -153,6 +153,7 @@ public class LoginController extends BroadleafLoginController {
             
 //            em.merge(fpst);
             //GK: custom database insert/update
+            //GK: custom query
             Session hSession=em.unwrap(Session.class);
             hSession.saveOrUpdate(fpst);
             
