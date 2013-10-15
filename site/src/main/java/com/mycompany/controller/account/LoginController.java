@@ -152,6 +152,7 @@ public class LoginController extends BroadleafLoginController {
             fpst.setCreateDate(SystemTime.asDate());
             
 //            em.merge(fpst);
+            //GK: custom database insert/update
             Session hSession=em.unwrap(Session.class);
             hSession.saveOrUpdate(fpst);
             
