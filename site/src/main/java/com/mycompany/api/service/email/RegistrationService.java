@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.velocity.app.VelocityEngine;
+import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.profile.core.domain.Customer;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -62,4 +63,18 @@ public class RegistrationService implements ApplicationContextAware{
 			this.applicationContext = applicationContext;
 			
 		}
+	   
+	   public void sendPasswordEmail(final String customerEmail, final Map vars) throws Exception {
+	      MimeMessagePreparator preparator = new MimeMessagePreparator() {
+	         public void prepare(MimeMessage mimeMessage) throws Exception {
+	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+	            message.setTo(customerEmail);
+	            message.setFrom("gkopevski@gmail.com"); // could be parameterized...
+	            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "com/mycompany/api/service/email/resetPassword-email.vm", vars);
+	            message.setText(text, true);
+	         }
+	      };
+	      this.mailSender.send(preparator);
+	   }
+	   
 }
