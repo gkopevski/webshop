@@ -3,7 +3,7 @@
 
     <div id="register">
         <h3><span th:text="#{register.registerForAccount}">Register for an Account</span></h3>
-        <p><span th:text="#{register.signUpNow}">Don't have an account yet? Sign up for one now to gain access to all our member tools</span>.</p>
+        <p>If you already have an account with us, please login at the <a th:href="@{/login}">login page</a>.</p>
 
         <blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
             <input type="hidden" th:field="*{redirectUrl}" />
@@ -35,7 +35,7 @@
             </div>          
             
             <div class="login_register">
-                <input class="register_button big red" type="submit" th:value="#{register.register}"/>
+                <input class="register_button medium red" type="submit" th:value="#{register.register}"/>
             </div>
             <div class="login_register_alt_links">
                 <a class="account" th:href="@{/login}"><span th:text="#{register.login}">Login</span></a>

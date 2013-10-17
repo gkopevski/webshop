@@ -15,8 +15,8 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-size: 12px; color: #828285; background: #FFFFFF; }
 
-::-moz-selection { background: #E40037; color: #fff; text-shadow: none; }
-::selection { background: #E40037; color: #fff; text-shadow: none; }
+::-moz-selection { background: #775577; color: #fff; text-shadow: none; }
+::selection { background: #775577; color: #fff; text-shadow: none; }
 
 a { color: #8D8484; text-decoration: none;} 
 a:visited { color: #8F8489; }
@@ -101,13 +101,23 @@ textarea {
     display: inline;
 }
 
+
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    background: none repeat scroll 0 0 #F5F1F1 !important;
+    border: 1px solid #CCCCCC !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 3px !important;
+}
+
 .field100, .field66, .field50, .field35, .field30, .field25 {
-    padding: 7px 10px;
-    background: #F5F4F1;
-    font-size: 14px;
-    font-weight: bold;
-    color: #666;
-    border: solid 1px #4D0206;
+/*     padding: 7px 10px; */
+/*     background: #F5F4F1; */
+/*     font-size: 14px; */
+/*     font-weight: bold; */
+/*     color: #666; */
+/*     border: solid 1px #4D0206; */
 }
 
 .fieldError {
@@ -568,7 +578,7 @@ nav {
     width: 282px;
     margin: 10px auto;
     padding: 20px;
-    background: url('../img/sidebarbg.jpg') repeat;
+/*     background: url('../img/sidebarbg.jpg') repeat; */
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -1755,13 +1765,25 @@ ul#payment_methods li {
         }
         
 footer {
-    width: 940px;
+/*    width: 940px;
     background: url(../img/the-heat-clinic-seal.png) top center no-repeat;
     margin: 40px auto;
     padding: 0 20px;
     padding-bottom: 40px;
     font: 12px/16px 'Georgia', serif;
     color: #655c5a;
+    */
+    background: none repeat scroll 0 0 #F7F7F7;
+    clear: both;
+    min-height: 100px;
+    overflow: auto;
+    padding: 20px;
+}
+
+footer .wrap{
+	width: 840px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
     footer #left_content h4, footer #right_content h4 {
@@ -1857,7 +1879,14 @@ input[type="submit"].small, a.small-button {
 
 input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
     color: white;
-    background-color: #E40037;
+    background: #b5b5b5; /* Old browsers */
+	background: -moz-linear-gradient(top, #b5b5b5 10%, #86858a 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,#b5b5b5), color-stop(90%,#86858a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #b5b5b5 10%,#86858a 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #b5b5b5 10%,#86858a 90%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #b5b5b5 10%,#86858a 90%); /* IE10+ */
+	background: linear-gradient(to bottom, #b5b5b5 10%,#86858a 90%); /* W3C */
+
 }
 
 input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
@@ -1882,7 +1911,13 @@ input[type="submit"].small:hover, a.small-button:hover,
 }
 
 input[type="submit"].red:hover, a.red-button:hover, .addToCart:hover {
-    background-color: #a50832;
+    background: #a80329; /* Old browsers */
+	background: -moz-linear-gradient(top, #a80329 10%, #6e0019 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,#a80329), color-stop(90%,#6e0019)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #a80329 10%,#6e0019 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #a80329 10%,#6e0019 90%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #a80329 10%,#6e0019 90%); /* IE10+ */
+	background: linear-gradient(to bottom, #a80329 10%,#6e0019 90%); /* W3C */
 }
 
 input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
@@ -3140,4 +3175,12 @@ and (max-width : 480px) {
 	position: absolute;
     right: 350px;
     top: 0;
+}
+
+.powered{
+	border-top: 1px solid #CCCCCC;
+    clear: both;
+    margin: 10px 0;
+    padding-top: 15px;
+    text-align: left;
 }
