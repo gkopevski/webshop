@@ -87,8 +87,8 @@ public class LoginController extends BroadleafLoginController {
     
     @RequestMapping(value="/login/forgotPassword", method=RequestMethod.POST)
     public String processForgotPassword(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
-//    	 GenericResponse errorResponse = sendForgotPasswordNotification(emailAddress, getResetPasswordUrl(request));
-    	 GenericResponse errorResponse = customerService.sendForgotPasswordNotification(emailAddress, getResetPasswordUrl(request));
+    	 GenericResponse errorResponse = sendForgotPasswordNotification(emailAddress, getResetPasswordUrl(request));
+//    	 GenericResponse errorResponse = customerService.sendForgotPasswordNotification(emailAddress, getResetPasswordUrl(request));
          if (errorResponse.getHasErrors()) {
               String errorCode = errorResponse.getErrorCodesList().get(0);
               model.addAttribute("errorCode", errorCode);             
@@ -156,6 +156,7 @@ public class LoginController extends BroadleafLoginController {
             //GK: custom query
             Session hSession=em.unwrap(Session.class);
             hSession.saveOrUpdate(fpst);
+            hSession.flush();
             
 //            fpst = customerForgotPasswordSecurityTokenDao.saveToken(fpst);
 
