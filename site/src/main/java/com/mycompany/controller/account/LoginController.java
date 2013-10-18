@@ -16,6 +16,7 @@
 
 package com.mycompany.controller.account;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -25,19 +26,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.common.security.util.PasswordUtils;
 import org.broadleafcommerce.common.service.GenericResponse;
 import org.broadleafcommerce.common.time.SystemTime;
 import org.broadleafcommerce.core.web.controller.account.BroadleafLoginController;
 import org.broadleafcommerce.core.web.controller.account.ResetPasswordForm;
+import org.broadleafcommerce.profile.core.dao.CustomerDao;
 import org.broadleafcommerce.profile.core.dao.CustomerForgotPasswordSecurityTokenDaoImpl;
 import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.core.domain.CustomerForgotPasswordSecurityToken;
 import org.broadleafcommerce.profile.core.domain.CustomerForgotPasswordSecurityTokenImpl;
+import org.broadleafcommerce.profile.core.service.CustomerServiceImpl;
 import org.hibernate.Session;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -75,6 +81,11 @@ public class LoginController extends BroadleafLoginController {
 	@Resource(name = "registrationService")
 	RegistrationService registrationEmailService;
 	
+	@Resource(name="blCustomerDao")
+    protected CustomerDao customerDao;
+	
+	private static final Log LOG = LogFactory.getLog(CustomerServiceImpl.class);
+	
     @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.login(request, response, model);
@@ -101,12 +112,78 @@ public class LoginController extends BroadleafLoginController {
 
     @RequestMapping(value="/login/resetPassword", method=RequestMethod.GET)
     public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return super.resetPassword(request, response, model);
+    	ResetPasswordForm resetPasswordForm = new ResetPasswordForm();
+        String username = (String) request.getSession(true).getAttribute("forgot_password_username");
+        String token = request.getParameter("token");
+        resetPasswordForm.setToken(token);
+        resetPasswordForm.setUsername(username);
+        model.addAttribute("resetPasswordForm", resetPasswordForm);
+        
+        GenericResponse errorResponse = new GenericResponse();
+        checkPasswordResetToken(token, errorResponse);      
+        
+        if (errorResponse.getHasErrors()) {
+            String errorCode = errorResponse.getErrorCodesList().get(0);
+            request.setAttribute("errorCode", errorCode);
+            return getResetPasswordErrorView();
+        } else {
+            return getResetPasswordView();
+        }
     }   
+    
+  
     
     @RequestMapping(value="/login/resetPassword", method=RequestMethod.POST)
     public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) throws ServiceException {
-        return super.processResetPassword(resetPasswordForm, request, response, model, errors);
+    	GenericResponse errorResponse = new GenericResponse();
+        resetPasswordValidator.validate(resetPasswordForm.getUsername(), resetPasswordForm.getPassword(), resetPasswordForm.getPasswordConfirm(), errors);
+        if (errorResponse.getHasErrors()) {
+            return getResetPasswordView();
+        }
+        
+        
+        errorResponse = new GenericResponse();
+        Customer customer = null;
+        if (resetPasswordForm.getUsername() != null) {
+            customer = customerDao.readCustomerByUsername(resetPasswordForm.getUsername());
+        }
+        checkCustomer(customer, errorResponse);
+        checkPassword(resetPasswordForm.getPassword(), resetPasswordForm.getPasswordConfirm(), errorResponse);
+        CustomerForgotPasswordSecurityToken fpst = checkPasswordResetToken(resetPasswordForm.getToken(), errorResponse);
+        
+        if (! errorResponse.getHasErrors()) {
+            if (! customer.getId().equals(fpst.getCustomerId())) {
+                if (LOG.isWarnEnabled()) {
+                    LOG.warn("Password reset attempt tried with mismatched customer and token " + customer.getId() + ", " + resetPasswordForm.getToken());
+                }
+                errorResponse.addErrorCode("invalidToken");
+            }
+        }
+
+        if (! errorResponse.getHasErrors()) {
+            customer.setUnencodedPassword(resetPasswordForm.getPassword());
+            saveCustomer(customer,true);
+            fpst.setTokenUsedFlag(true);
+//            customerForgotPasswordSecurityTokenDao.saveToken(fpst);
+            Session hSession=em.unwrap(Session.class);
+            hSession.saveOrUpdate(fpst);
+            hSession.flush();
+        }
+        
+        
+        if (errorResponse.getHasErrors()) {
+            String errorCode = errorResponse.getErrorCodesList().get(0);
+            request.setAttribute("errorCode", errorCode);
+            return getResetPasswordView();
+        } else {            
+            // The reset password was successful, so log this customer in.          
+            Authentication auth = loginService.loginCustomer(resetPasswordForm.getUsername(), resetPasswordForm.getPassword());
+            mergeCartProcessor.execute(request, response, auth);            
+
+            return getResetPasswordSuccessView();
+        }
+    	
+    	//        return super.processResetPassword(resetPasswordForm, request, response, model, errors);
     }   
     
     @Override
@@ -191,4 +268,62 @@ public class LoginController extends BroadleafLoginController {
         }
     }
     
+    private CustomerForgotPasswordSecurityToken checkPasswordResetToken(String token, GenericResponse response) {
+        if (token == null || "".equals(token)) {
+            response.addErrorCode("invalidToken");
+        }
+        
+        CustomerForgotPasswordSecurityToken fpst = null;
+        if (! response.getHasErrors()) {
+            token = token.toLowerCase();
+            
+            Session hSession=em.unwrap(Session.class);
+            
+            fpst = (CustomerForgotPasswordSecurityTokenImpl) hSession.get(CustomerForgotPasswordSecurityTokenImpl.class, token);
+//            fpst = customerForgotPasswordSecurityTokenDao.readToken(passwordEncoder.encodePassword(token, null));
+            if (fpst == null) {
+                response.addErrorCode("invalidToken");
+            } else if (fpst.isTokenUsedFlag()) {
+                response.addErrorCode("tokenUsed");
+            } else if (isTokenExpired(fpst)) {
+                response.addErrorCode("tokenExpired");
+            }
+        }       
+        return fpst;
+    }
+    protected boolean isTokenExpired(CustomerForgotPasswordSecurityToken fpst) {
+        Date now = SystemTime.asDate();
+        long currentTimeInMillis = now.getTime();
+        long tokenSaveTimeInMillis = fpst.getCreateDate().getTime();
+        long minutesSinceSave = (currentTimeInMillis - tokenSaveTimeInMillis)/60000;
+        return minutesSinceSave > 30;
+    }
+    protected void checkPassword(String password, String confirmPassword, GenericResponse response) {
+        if (password == null || confirmPassword == null || "".equals(password) || "".equals(confirmPassword)) {
+            response.addErrorCode("invalidPassword");
+        } else if (! password.equals(confirmPassword)) {
+            response.addErrorCode("passwordMismatch");
+        }
+    }
+    public Customer saveCustomer(Customer customer, boolean register1) {
+    	
+    	salt = new SaltSource() {
+   			@Override
+   			public Object getSalt(UserDetails user) {
+   				return "mir!";
+   			}
+   		};
+   	   UserDetails principal = userDetailsService.loadUserByUsername(customer.getUsername());
+        if (customer.getUnencodedPassword() != null) {
+            customer.setPassword(passwordEncoder.encodePassword(customer.getUnencodedPassword(), salt.getSalt(principal)));
+        }
+
+        // let's make sure they entered a new challenge answer (we will populate
+        // the password field with hashed values so check that they have changed
+        // id
+        if (customer.getUnencodedChallengeAnswer() != null && !customer.getUnencodedChallengeAnswer().equals(customer.getChallengeAnswer())) {
+            customer.setChallengeAnswer(passwordEncoder.encodePassword(customer.getUnencodedChallengeAnswer(), salt.getSalt(principal)));
+        }
+        return customerDao.save(customer);
+    }
 }
