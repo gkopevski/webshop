@@ -53,7 +53,7 @@
                 <input type="text" th:field="*{address.city}" class="field25 required cloneable" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
                 <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required cloneable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
                     <option value="">--</option>
-                    <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
+<!--                     <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option> -->
                 </select>
             </div>
             <div class="form25 margin20">
