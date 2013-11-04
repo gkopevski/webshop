@@ -97,6 +97,8 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
             vars.put("order", order);
             emailService.sendTemplateEmail(customer.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
             
+            //TODO: GK - Da se sredi ova da bidat ozbilni mailovi
+            
             sendCustomerOrderConfirmationEmailMIR(customer);
             sendAdminOrderConfirmationEmailMIR(customer);
         }
@@ -109,7 +111,7 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
 	         public void prepare(MimeMessage mimeMessage) throws Exception {
 	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
 	            message.setTo(customer.getEmailAddress());
-	            message.setFrom("gkopevski@gmail.com"); // could be parameterized...
+	            message.setFrom("support@medical-it-revolution.com"); // could be parameterized...
 	            Map model = new HashMap();
 	            model.put("customer", customer);
 	            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "com/mycompany/api/service/email/order-confirmation.vm", model);
@@ -124,7 +126,7 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
 	         public void prepare(MimeMessage mimeMessage) throws Exception {
 	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
 	            message.setTo(customer.getEmailAddress());
-	            message.setFrom("gkopevski@gmail.com"); // could be parameterized...
+	            message.setFrom("support@medical-it-revolution.com"); // could be parameterized...
 	            Map model = new HashMap();
 	            model.put("customer", customer);
 	            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "com/mycompany/api/service/email/order-confirmation.vm", model);
