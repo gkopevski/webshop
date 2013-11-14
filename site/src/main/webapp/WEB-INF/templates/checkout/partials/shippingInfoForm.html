@@ -1,7 +1,7 @@
 <div>
     <blc:form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
         <div class="left_content">
-            <input type="hidden" name="address.country" value="US" />
+            <input type="hidden" name="address.country" value="NL" />
 
             <div class="form30">
                 <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label> <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span> <input

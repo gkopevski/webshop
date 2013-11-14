@@ -82,7 +82,7 @@
 
     <div id="billing_info_form" class="right_content_billing">
 
-        <input type="hidden" name="address.country" value="US" />
+        <input type="hidden" name="address.country" value="NL" />
 
         <div class="form100" th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
             <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> <span th:text="#{cart.useShppingInfo}">Use Shipping Information</span>
@@ -124,7 +124,7 @@
         <div class="clearfix"></div>
 
         <div class="form30">
-            <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
+            <label for="city"><span th:text="#{cart.cityState}">City</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
             <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
             <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
