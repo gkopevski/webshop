@@ -56,7 +56,7 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
     @Resource(name="blOrderService")
     protected OrderService orderService;
     
-    //VK
+    //VK....
     @Resource(name="mailSender")
 	 private JavaMailSender mailSender;
 	 
