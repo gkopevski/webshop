@@ -75,9 +75,11 @@
     <bean id="solrEmbedded" class="java.lang.String">
         <constructor-arg value="solrhome"/>
     </bean>
+     
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
         <constructor-arg name="solrServer" ref="${solr.source}" />
-    </bean> 
+    </bean>
+      
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
