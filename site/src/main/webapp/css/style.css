@@ -1450,12 +1450,22 @@ ul#payment_methods li {
     display: block;
 }
 
+.product_container .productActions{
+	border-top: 2px solid #DDDDDD;
+    bottom: 0 !important;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    padding-top: 5px;
+}
+
     #products li {
     	border: 2px solid #DDDDDD;
         width: 210px;
         height: 380px;
         margin-bottom: 10px;
-    	margin-left: 5px;
+    	margin-left: 15px;
    		padding: 5px;
         text-align: center;
         float: left;
@@ -1493,15 +1503,13 @@ ul#payment_methods li {
             }
         
             #products li .image .price {
-                position: absolute;
-                background-color: black;
-                color: white;
-                opacity: 0.8;
-                padding: 10px 20px;
-                font: 16px/16px 'Open Sans', Helvetica, sans-serif;
-                font-weight: 600;
-                bottom: 5px;
-                right: 5px;
+			    bottom: 40px;
+			    color: #407A3A;
+			    font: 600 16px/16px 'Open Sans',Helvetica,sans-serif;
+			    opacity: 0.8;
+			    padding: 10px 20px;
+			    position: absolute;
+			    right: 65px;
             }
         
             #products li .image img {
@@ -1510,19 +1518,20 @@ ul#payment_methods li {
             }
         
         #products li .content {
-            width: 220px;
-            height: 118px;
+            width: 210px;
+            height: 88px;
             font: 13px/18px 'Georgia',serif;
             color: #655c5a;
             overflow: hidden;
-            max-height: 118px;
+            max-height: 88px;
         }
         
         #products li .content .title {
-            width: 220px;
+            width: 210px;
             font: 18px/21px 'Oxygen', Helvetica, sans-serif;
             margin-bottom: 7px;
             color: #262322;
+            display: none;
         }
         
             #products li .content .title a:link, #products li .content .title a:visited {
