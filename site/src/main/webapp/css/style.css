@@ -1709,15 +1709,21 @@ ul#payment_methods li {
     }
     
     #featured_products li {
-        width: 220px;
-        display: block;
-        margin-bottom: 20px;
+		border: 2px solid #DDDDDD;
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 5px;
+	    position: relative;
+        height: 190px;
+		margin-bottom: 10px;
+    	width: 200px;
+        
     }
     
     #featured_products li .image {
         width: 80px;
         height: 140px;
-        margin-right: 10px;
+        margin-right: 5px;
         overflow: hidden;
         float: left;
         display: inline;
@@ -1755,7 +1761,7 @@ ul#payment_methods li {
         }
         
         #featured_products li .content {
-            width: 130px;
+            width: 110px;
             font: 12px/18px 'Georgia',serif;
             color: #655c5a;
             float: right;
@@ -1764,7 +1770,7 @@ ul#payment_methods li {
         }
         
         #featured_products li .content .title {
-            width: 130px;
+            width: 110px;
             font: 16px/18px 'Oxygen', Helvetica, sans-serif;
             margin-bottom: 7px;
             color: #262322;
