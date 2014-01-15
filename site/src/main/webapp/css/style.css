@@ -1494,16 +1494,16 @@ ul#payment_methods li {
         }
             #products li .image .has-sale {
                 text-decoration: line-through;
+                color: #999999;
             }
             
             #products li .image .sale {
-                color: #E40037;
                 bottom: 41px;
-                padding: 0 0 5px 0;
+                padding: 0;
             }
         
             #products li .image .price {
-			    bottom: 40px;
+			    bottom: 30px;
 			    color: #407A3A;
 			    font: 600 16px/16px 'Open Sans',Helvetica,sans-serif;
 			    opacity: 0.8;
