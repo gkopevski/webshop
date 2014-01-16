@@ -1269,8 +1269,9 @@ ul#payment_methods li {
 }
 
 #left_column {
-    width: 740px;
-    float: left;
+/*     width: 740px; */
+	width: 736px;
+    float: right;
 }
 
     #left_column header {
@@ -1521,7 +1522,7 @@ ul#payment_methods li {
             width: 210px;
             height: 88px;
             font: 13px/18px 'Georgia',serif;
-            color: #655c5a;
+            color: #999999;
             overflow: hidden;
             max-height: 88px;
         }
@@ -1583,12 +1584,12 @@ ul#payment_methods li {
         
 #right_column {
     width: 260px;
-    margin: 20px -20px 0 0;
-    background: url('../img/sidebarbg.jpg') repeat;
-    float: right;
+    margin: 0 -20px 0 0;
+/*     background: url('../img/sidebarbg.jpg') repeat; */
+    float: left;
     -moz-box-shadow: 0px 2px 7px #C2B9B3;
     -webkit-box-shadow: 0px 2px 7px #C2B9B3;
-    box-shadow: 0px 2px 7px #C2B9B3;
+/*     box-shadow: 0px 2px 7px #C2B9B3; */
 }
 
     #right_column header {
@@ -1709,45 +1710,38 @@ ul#payment_methods li {
     }
     
     #featured_products li {
-		border: 2px solid #DDDDDD;
-	    display: inline-block;
-	    list-style-type: none;
-	    padding: 5px;
-	    position: relative;
-        height: 190px;
-		margin-bottom: 10px;
-    	width: 200px;
-        
-    }
-    
-    #featured_products li .image {
-        width: 80px;
-        height: 140px;
-        margin-right: 5px;
-        overflow: hidden;
+    	border: 2px solid #DDDDDD;
+        width: 210px;
+        height: 380px;
+        margin-bottom: 10px;
+    	margin-top: 2px;
+   		padding: 5px;
+        text-align: center;
         float: left;
         display: inline;
         position: relative;
     }
     
+    #featured_products li .image {
+	    margin-bottom: 10px;
+	    overflow: hidden;
+	    width: 210px;
+	    z-index: 10;
+    }
+    
         #featured_products li .image img {
-            width: auto;
-            height: 140px;
-            margin-left: -30px;
+		    height: auto;
+		    width: 210px;
         }
         
         #featured_products li .image .price {
-            width: 60px;
-            position: absolute;
-            background-color: black;
-            color: white;
-            opacity: 0.8;
-            padding: 5px 10px;
-            text-align: center;
-            font: 14px/16px 'Open Sans', Helvetica, sans-serif;
-            font-weight: 600;
-            bottom: 0px;
-            right: 0px;
+		    bottom: 30px;
+		    color: #407A3A;
+		    font: 600 16px/16px 'Open Sans',Helvetica,sans-serif;
+		    opacity: 0.8;
+		    padding: 10px 20px;
+		    position: absolute;
+		    right: 65px;
         }
         
         #featured_products li .image .has-sale {
@@ -1761,12 +1755,12 @@ ul#payment_methods li {
         }
         
         #featured_products li .content {
-            width: 110px;
-            font: 12px/18px 'Georgia',serif;
-            color: #655c5a;
-            float: right;
-            display: inline;
-            max-height: 170px;
+		    color: #999999;
+		    font: 13px/18px 'Georgia',serif;
+		    height: 88px;
+		    max-height: 88px;
+		    overflow: hidden;
+		    width: 210px;
         }
         
         #featured_products li .content .title {
@@ -1774,6 +1768,7 @@ ul#payment_methods li {
             font: 16px/18px 'Oxygen', Helvetica, sans-serif;
             margin-bottom: 7px;
             color: #262322;
+            display: none;
         }
         
             #featured_products li .content .title a:link, #featured_products li .content .title a:visited {
@@ -1782,7 +1777,7 @@ ul#payment_methods li {
             }
         
         #featured_products li .add_to_cart, #featured_products li .in_cart {
-            margin-left: 90px;
+/*             margin-left: 90px; */
             display: block;
         }
         
@@ -3192,6 +3187,7 @@ and (max-width : 480px) {
 .float_right{float: right;}
 .bold{font-weight: bold;}
 .font_black{color: #050505 !important;}
+.newRow{clear:both; height: 0px !important;}
 
 .cart_vl{
 	position: absolute;
@@ -3206,3 +3202,5 @@ and (max-width : 480px) {
     padding-top: 15px;
     text-align: left;
 }
+
+.leftsidemenu{}

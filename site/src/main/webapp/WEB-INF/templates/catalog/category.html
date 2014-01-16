@@ -14,15 +14,24 @@
     
         <nav th:substituteby="layout/partials/nav" />
         
+    		<blc:content contentType="Homepage Banner Ad" />       
+        <div id="banners" th:if="${contentItem}">
+            <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>        
+        </div>
+        <div class="newRow">&nbsp;</div>
+        
         <section id="left_column">
-    
+    <!-- 
             <header>
                 <h1 th:inline="text">
                     <span th:text="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{category.of}">of</span> [[${result.totalResults}]])
                 </h1>
                 <div th:substituteby="catalog/partials/productSortOptions"></div>
             </header>
-            
+    -->   
+    
+        
+        
             <ul id="products" class="group">
                 <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
             </ul>
@@ -32,16 +41,16 @@
         </section>
                 
     
-        <section id="right_column">
+<!--         <section id="right_column"> -->
 <!--             <header><span th:text="#{category.filterResults}">Filter your results</span></header> -->
-            <div id="options">
+<!--             <div id="options"> -->
                 
 <!--                 <div th:substituteby="catalog/partials/facetFilter" /> -->
                 
-                <div th:substituteby="catalog/partials/rightHandBannerAds" />
+<!--                 <div th:substituteby="catalog/partials/rightHandBannerAds" /> -->
                 
                 <section id="right_column">
-                    <header><span th:text="#{category.featuredProducts}">Featured Products</span></header>
+<!--                     <header><span th:text="#{category.featuredProducts}">Featured Products</span></header> -->
                     <div id="options">
                         <div class="section" th:object="${category}">
                              <blc:related_products categoryId="*{id}" quantity="1"/>     
@@ -50,12 +59,15 @@
                              </ul>
                         </div>                                  
                     </div>
+                    <div class="newRow">&nbsp;</div>
+                    <div class="leftsidemenu">
+			        	<div th:substituteby="catalog/partials/sideMenu" />
+                    </div>
                 </section>  
                 
-            </div>
-        </section>
+<!--             </div> -->
+<!--         </section> -->
             
-        <div th:substituteby="catalog/partials/sideMenu" />
     </div>
     
     <footer th:substituteby="layout/partials/footer" />
