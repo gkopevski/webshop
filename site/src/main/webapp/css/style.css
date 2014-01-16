@@ -3233,9 +3233,9 @@ and (max-width : 480px) {
 	padding: 6px 2px;
 }
 
-.leftsidemenu ul li:after{
+.leftsidemenu ul li a:after{
 	color: #FFFFFF;
-    content: " >>>";
+    content: ">>>";
     float: right;
     font-weight: bold;
     margin-right: 10px;
@@ -3246,5 +3246,5 @@ and (max-width : 480px) {
 	text-decoration: none;
     text-transform: uppercase;
     font: 600 14px 'Open Sans',Helvetica,sans-serif;
-    
+    display: block;
 } 
