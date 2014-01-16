@@ -22,7 +22,7 @@
 <div th:class="*{'productActions productActions' + id}">
 
     <div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'">
-        <a class="fancycart fancybox.ajax inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
+        <a class="fancycart fancybox.ajax inCartz" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
     </div>
 
     <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
