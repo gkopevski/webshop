@@ -3203,4 +3203,48 @@ and (max-width : 480px) {
     text-align: left;
 }
 
-.leftsidemenu{}
+.leftsidemenu{
+	background: #9ba891; /* Old browsers */
+	background: -moz-linear-gradient(left,  #9ba891 15%, #fafbfa 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(15%,#9ba891), color-stop(100%,#fafbfa)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* IE10+ */
+	background: linear-gradient(to right,  #9ba891 15%,#fafbfa 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ba891', endColorstr='#fafbfa',GradientType=1 ); /* IE6-9 */
+
+	margin: -30px 0 0 20px;
+    width: 200px;
+	padding: 10px 0 10px 10px;
+    width: 214px;
+    height: 370px;
+	
+}
+
+.leftsidemenu ul{
+	list-style-type: none;
+	padding: 5px !important;
+	margin: 0px !important;
+}
+
+.leftsidemenu ul li{
+	border-bottom: 2px dashed #d6decb;
+	margin-bottom: 3px;
+	padding: 6px 2px;
+}
+
+.leftsidemenu ul li:after{
+	color: #FFFFFF;
+    content: " >>>";
+    float: right;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.leftsidemenu ul li a{
+	color: #ffffff !important;
+	text-decoration: none;
+    text-transform: uppercase;
+    font: 600 14px 'Open Sans',Helvetica,sans-serif;
+    
+} 
