@@ -60,7 +60,7 @@
     
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
-                    <blc:form method="POST" th:action="@{/account/wishlist/add}">
+                    <blc:form style="clear:both;" method="POST" th:action="@{/account/wishlist/add}">
                         <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
                             <div class="form50">
                                 <label th:text="*{label}"></label>
