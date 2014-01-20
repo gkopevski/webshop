@@ -57,7 +57,7 @@
 				    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"/>
 				</a>
                 </blc:form>
-    
+<!-- vlatko wishlist
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form style="clear:both;" method="POST" th:action="@{/account/wishlist/add}">
@@ -84,7 +84,8 @@
                         </div>
                     </blc:form>
                 </div>
-                <!--      
+-->
+<!-- vlatko social
                 <p>
                     Share this Sauce:
                     <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -97,7 +98,7 @@
                     </div>
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
                 </p>
-                -->
+-->
             </div>
             
             <div id="product_main_image" th:if="*{media['primary']}">
