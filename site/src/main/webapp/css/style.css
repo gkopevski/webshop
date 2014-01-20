@@ -546,7 +546,8 @@ nav {
 }
 
 #order_confirmation .confirmation-note {
-    background: url('../img/sidebarbg.jpg') repeat;
+/*     background: url('../img/sidebarbg.jpg') repeat; */
+	background: #F0F0F0;
     border: 1px solid #d2c3b6;
     margin: 0 30px;
     padding: 5px 10px;
@@ -688,7 +689,7 @@ li.promotion,  ul.promotion{
 }
 
 #order-history > li:nth-child(2n) div.order-info-row {
-    background-color: #eae3dd;
+    background-color: #F0F0F0;
 }
 
 #order-history > li:first-child {
@@ -749,7 +750,7 @@ li.promotion,  ul.promotion{
 }
 
 .order-details-container .shipping-groups h3 {
-    background-color: #f3efeb;
+    background-color: #F0F0F0;
     border-bottom: 1px solid #c8c5c1;
     margin: 0;
     padding: 6px;
@@ -757,7 +758,7 @@ li.promotion,  ul.promotion{
 
 .order-details-container .payment-information h3 {
     color: #fff;
-    background-color: #E40037;
+    background-color: #9BA891;
 }
 
 .order-details-container .details {
