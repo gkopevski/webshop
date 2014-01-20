@@ -16,7 +16,7 @@
         <p><a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a></p>
     </div>
     <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
-<!--    vlatko discount
+<!--    vlatko discount 
          <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label> 
          <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/> 
         <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
