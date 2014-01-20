@@ -16,15 +16,16 @@
         <p><a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a></p>
     </div>
     <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
-<!--         <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label> -->
-<!--         <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/> -->
+<!--    vlatko discount
+         <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label> 
+         <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/> 
         <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
         <div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
             <div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
         </div>
         <div id="cart_promo_error" style="display: none;"></div>
+ -->    
     </blc:form>
-    
     <div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
 
 </div>
