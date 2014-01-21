@@ -114,7 +114,7 @@
                     [[*{address.phonePrimary.phoneNumber}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;
+                    [[*{address.city}]],&nbsp;, Nederland
 <!--                     [[*{address.state.abbreviation}]]&nbsp; -->
                     [[*{address.postalCode}]]<br/>
                 </address>
@@ -122,7 +122,7 @@
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;
+                    [[*{address.city}]],&nbsp;, Nederland
 <!--                     [[*{address.state.abbreviation}]]&nbsp; -->
                     [[*{address.postalCode}]]<br/>
                 </address>
@@ -146,13 +146,17 @@
                     [[*{address.phonePrimary.phoneNumber}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;, Nederland
+<!--                     [[*{address.state.abbreviation}]]&nbsp; -->
+                    [[*{address.postalCode}]]<br/>
                 </address>
                 <address th:if="*{address != null and address.phonePrimary == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;, Nederland
+<!--                     [[*{address.state.abbreviation}]]&nbsp; -->
+                    [[*{address.postalCode}]]<br/>
                 </address>
             </div>
             <div class="right_content">
