@@ -3275,11 +3275,17 @@ and (max-width : 480px) {
 }
 
 .leftsidemenu ul li a{
-	color: #ffffff !important;
+	color: #ffffff;
 	text-decoration: none;
     text-transform: uppercase;
     font: 600 14px 'Open Sans',Helvetica,sans-serif;
     display: block;
+    transition: color 0.2s ease-in 0s;
+}
+
+.leftsidemenu ul li a:hover{
+	transition: color 0.2s ease-in 0s;
+	color: #DDDDDD;
 }
 
 .powered .footerLink{
