@@ -432,24 +432,31 @@ nav {
 }
 
     nav ul {
-        width: 100%;
-        margin-left: 1px;
-        padding: 0;
-        list-style: none;
+/*         width: 100%; */
+/*         margin-left: 1px; */
+/*         padding: 0; */
+/*         list-style: none; */
+width: 100%;
+display: table;
     }
     
     nav ul li {
-        margin: -1px;
-        padding: 0;
-        display: inline;
+/*         margin: -1px; */
+/*         padding: 0; */
+/*         display: inline; */
+display: table-cell;
+width: auto;
+text-align: center;
+border-right: 1px solid #FFFFFF;
     }
     
     nav ul li a {
         font: 14px 'Open Sans', Helvetica, sans-serif;
         font-weight: 600;
         color: #ffffff;
-        padding: 1px 14px;
+/*         padding: 1px 14px; */
         background: #A9B4A0;
+        display: block;
     }
     
     nav ul li a.home {
