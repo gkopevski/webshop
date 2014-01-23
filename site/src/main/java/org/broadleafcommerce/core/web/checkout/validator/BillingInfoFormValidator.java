@@ -16,53 +16,56 @@
 
 package org.broadleafcommerce.core.web.checkout.validator;
 
-import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-
-@Component("blShippingInfoFormValidator")
-public class ShippingInfoFormValidator implements Validator {
+@Component("blBillingInfoFormValidator")
+public class BillingInfoFormValidator implements Validator {
 
     @SuppressWarnings("rawtypes")
     public boolean supports(Class clazz) {
-        return clazz.equals(ShippingInfoFormValidator.class);
+        return clazz.equals(BillingInfoForm.class);
     }
 
     public void validate(Object obj, Errors errors) {
-    	
-        ShippingInfoForm shippingInfoForm = (ShippingInfoForm) obj;
+        BillingInfoForm billingInfoForm = (BillingInfoForm) obj;
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.firstName", "firstName.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.lastName", "lastName.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.addressLine1", "addressLine1.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.city", "city.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.postalCode", "postalCode.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.firstName", "firstName.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.lastName", "lastName.required");
 
-        String validPersonNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-?'.,/@!+:()]*";
-        String validCompanyNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-.`,/+()#@!?]*";
-        String validPhoneNumberRegex = "[a-zA-ZéëïóöüÉËÏÓÖÜ0-9-()+,*.#/]*";
-        if (shippingInfoForm.getAddress().getCountry() == null) {
+        if (billingInfoForm.getAddress().getCountry() == null) {
             errors.rejectValue("address.country", "country.required", null, null);
         }
         
-        if (!shippingInfoForm.getAddress().getFirstName().matches(validPersonNameRegex)) {
+        String validPersonNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-?'.,/@!+:()]*";
+        String validCompanyNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-.',/+()#@!?]*";
+        String validPhoneNumberRegex = "[a-zA-ZéëïóöüÉËÏÓÖÜ0-9-()+,*.#/]*";
+        if (billingInfoForm.getAddress().getCountry() == null) {
+            errors.rejectValue("address.country", "country.required", null, null);
+        }
+        
+        if (!billingInfoForm.getAddress().getFirstName().matches(validPersonNameRegex)) {
             errors.rejectValue("address.firstName", null, null, "Invalid firstname format.");
         }
         
-        if (!shippingInfoForm.getAddress().getLastName().matches(validPersonNameRegex)) {
+        if (!billingInfoForm.getAddress().getLastName().matches(validPersonNameRegex)) {
             errors.rejectValue("address.lastName", null, null, "Invalid lastname format.");
         }
         
-        if (!shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
-            errors.rejectValue("address.phonePrimary", null, null, "Invalid phone number format.");
-        }
-        
-        
+//        if (!billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
+//            errors.rejectValue("address.phonePrimary.phoneNumber", null, null, "Invalid phone number format.");
+//        }
 
-        //VK: we don't like this validation because only one shippment option is available
-        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fulfillmentOptionId", "fulfillmentOptionId.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardName", "creditCardName.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardNumber", "creditCardNumber.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardCvvCode", "creditCardCvvCode.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardExpMonth", "creditCardExpMonth.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardExpYear", "creditCardExpYear.required");
     }
 }
