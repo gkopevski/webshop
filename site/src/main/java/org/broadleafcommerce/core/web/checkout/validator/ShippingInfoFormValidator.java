@@ -40,6 +40,7 @@ public class ShippingInfoFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.postalCode", "postalCode.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.firstName", "firstName.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.lastName", "lastName.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.phonePrimary", "phone.required");
 
         String validPersonNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-?'.,/@!+:()]*";
         String validCompanyNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-.`,/+()#@!?]*";
@@ -56,8 +57,8 @@ public class ShippingInfoFormValidator implements Validator {
             errors.rejectValue("address.lastName", null, null, "Invalid lastname format.");
         }
         
-        if (!shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
-            errors.rejectValue("address.phonePrimary", null, null, "Invalid phone number format.");
+        if (shippingInfoForm.getAddress().getPhonePrimary() != null && !shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().trim().equals("") && !shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
+        	errors.rejectValue("address.phonePrimary", null, null, "phone.invalid");
         }
         
         

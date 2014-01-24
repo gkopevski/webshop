@@ -38,7 +38,7 @@ public class BillingInfoFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.addressLine1", "addressLine1.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.city", "city.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.postalCode", "postalCode.required");
-
+        
         if (billingInfoForm.getAddress().getCountry() == null) {
             errors.rejectValue("address.country", "country.required", null, null);
         }
@@ -50,17 +50,17 @@ public class BillingInfoFormValidator implements Validator {
             errors.rejectValue("address.country", "country.required", null, null);
         }
         
-        if (!billingInfoForm.getAddress().getFirstName().matches(validPersonNameRegex)) {
-            errors.rejectValue("address.firstName", null, null, "Invalid firstname format.");
+        if (!billingInfoForm.getAddress().getFirstName().equals("") && !billingInfoForm.getAddress().getFirstName().matches(validPersonNameRegex)) {
+            errors.rejectValue("address.firstName", null, null, "firstName.invalid");
         }
         
-        if (!billingInfoForm.getAddress().getLastName().matches(validPersonNameRegex)) {
-            errors.rejectValue("address.lastName", null, null, "Invalid lastname format.");
+        if (!billingInfoForm.getAddress().getLastName().equals("") && !billingInfoForm.getAddress().getLastName().matches(validPersonNameRegex)) {
+            errors.rejectValue("address.lastName", null, null, "lastName.invalid");
         }
         
-//        if (!billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
-//            errors.rejectValue("address.phonePrimary.phoneNumber", null, null, "Invalid phone number format.");
-//        }
+        if (billingInfoForm.getAddress().getPhonePrimary() != null && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().equals("") && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
+            errors.rejectValue("address.phonePrimary", null, null, "phone.invalid");
+        }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardName", "creditCardName.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardNumber", "creditCardNumber.required");
