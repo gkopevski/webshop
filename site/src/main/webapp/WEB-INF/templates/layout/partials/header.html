@@ -1,58 +1,88 @@
 <header>
+	<div class="top_black">
+		
+		<div class="top_content">
+		
+			<div class="float_right" id="cart_info">
+	
+	            <div th:if="${customer.anonymous}"  th:remove="tag">
+	
+	                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	                <span>Bel ons op 020-9876543</span>
+					&nbsp;|&nbsp;&nbsp;&nbsp; 
+	                <a class="account bold" th:href="@{/login}">
+	                    <span th:text="#{home.login}">Sign In</span>
+	                </a>
+	                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+	                <a class="account bold" th:href="@{/register}">
+	                    <span th:text="#{home.register}">Sign Up</span>
+	                </a>
+	                &nbsp;&nbsp;&nbsp;|
+	            </div>
+	            
+	            <div th:unless="${customer.anonymous}" th:remove="tag">
+	                <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
+	                &nbsp;|&nbsp; 
+	                <a th:href="@{/logout}">
+	                    <span th:text="#{home.logout}">Logout</span>
+	                </a>
+	                &nbsp;|&nbsp; 
+	            </div>
+	
+	
+	<!--             <a id="cartLink" class="fancycart" th:href="@{/cart}"> -->
+	<!--                 <img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" /> -->
+	<!--                 &nbsp;  -->
+	<!--                 <span class="headerCartItemsCount" th:text="${cart.itemCount}" /> -->
+	<!--                 <span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" /> -->
+	<!--             </a> -->
+	
+	        </div>
+		
+		
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var tmp = true;
+		function searchButton(){
+			if(tmp){
+				$('#search').show("slide");
+				tmp=false;
+			}
+			else{
+				$('#search').hide("slide");
+				tmp=true;
+			}
+		};
+	</script>
+	
     <div id="header_content">
 
 
-    	<div class="cart_vl">
-    		<span class="bold font_black">Shopping Cart</span>
-    		<br />
-    		 <a id="cartLink" class="fancycart" th:href="@{/cart}">
-<!--                 <img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" /> -->
-<!--                 &nbsp;  -->
-                <span class="headerCartItemsCount" th:text="${cart.itemCount}" />
-                <span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
+    	<div class="cart_vl float_right">
+    		<span class="bold font_black">SHOPPINGBAG:&nbsp;</span>
+            <span class="headerCartItemsCount bold" th:text="${cart.itemCount}" ></span>
+            &nbsp; 
+    		 <a id="cartLink" class="fancycart circle_border" th:href="@{/cart}">
+                <img th:src="@{/img/cart_icon.png}" alt="Shopping Cart" />
             </a>
+            &nbsp;&nbsp;
+	    	<a id="searchIcon" class="circle_border" onclick="searchButton()" >
+	    		<img th:src="@{/img/search_icon.png}" alt="Search" />
+	    	</a>
+	    	
+	    	<div class="newRow">&nbsp;</div>
+	    	
+	    	<div id="search" class="float_right">
+	            <blc:form th:action="@{/search}" method="GET">
+	            <input type="search" class="search" name="q" th:value="${originalQuery}" />
+	            <input type="submit" style="display:none;" id="search_button" value="go" />
+	            </blc:form>
+	        </div>
     	</div>
-    	<div id="search">
-            <blc:form th:action="@{/search}" method="GET">
-            <input type="search" class="search" name="q" th:value="${originalQuery}" />
-            <input type="submit" id="search_button" value="go" />
-            </blc:form>
-        </div>
     
-        <div id="cart_info">
 
-            <div th:if="${customer.anonymous}"  th:remove="tag">
-
-				<span class="float_left">Welcome visitor you can</span>
-				&nbsp;
-                <a class="account bold" th:href="@{/login}">
-                    <span th:text="#{home.login}">login</span>
-                </a>
-                &nbsp;or&nbsp; 
-                <a class="account bold" th:href="@{/register}">
-                    <span th:text="#{home.register}">create an account</span>
-                </a>
-                .&nbsp;<span class="bold font_black">Order by Phone: 1.800.266.9506</span>
-            </div>
-            
-            <div th:unless="${customer.anonymous}" th:remove="tag">
-                <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
-                &nbsp;|&nbsp; 
-                <a th:href="@{/logout}">
-                    <span th:text="#{home.logout}">Logout</span>
-                </a>
-                &nbsp;|&nbsp; 
-            </div>
-
-
-<!--             <a id="cartLink" class="fancycart" th:href="@{/cart}"> -->
-<!--                 <img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" /> -->
-<!--                 &nbsp;  -->
-<!--                 <span class="headerCartItemsCount" th:text="${cart.itemCount}" /> -->
-<!--                 <span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" /> -->
-<!--             </a> -->
-
-        </div>
 
 <!--         <div id="languages"> -->
 <!--             <span id="selectedLocale" th:text="${session.blLocale.localeCode}" style="display: none" /> -->
@@ -80,5 +110,5 @@
         <div id="logo"><h1><a th:href="@{/}">Pharmaskincare Home</a></h1></div>
         
 
-    </div>
+	</div>
 </header>
