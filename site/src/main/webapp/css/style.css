@@ -276,7 +276,7 @@ header {
 }
 
 #header_content {
-    width: 980px;
+    width: 960px;
     margin: 0 auto;
     position: relative;
 }
@@ -492,8 +492,7 @@ border-right: 1px solid #FFFFFF;
         }
         
 #banners {
-    width: 940px;
-    margin: 42px 0 0 20px;
+    margin: 42px 0 0;
     position: relative;
 }
 
@@ -3242,7 +3241,7 @@ and (max-width : 480px) {
 /* 	position: absolute; */
 /*     right: 350px; */
 /*     top: 0; */
-margin-right: 30px;
+/* margin-right: 30px; */
 }
 
 .powered{
@@ -3374,4 +3373,13 @@ margin-right: 30px;
 	border-radius: 50%;
 	display: inline-block;
     padding: 10px 14px;
+}
+.social_icons{
+	float:left;
+}
+.social_icons a{
+	margin-right: 10px;
+}
+#searchIcon{
+	cursor: pointer;
 }

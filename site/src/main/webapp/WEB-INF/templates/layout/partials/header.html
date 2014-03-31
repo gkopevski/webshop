@@ -2,11 +2,15 @@
 	<div class="top_black">
 		
 		<div class="top_content">
-		
+			<div class="social_icons">
+				<a href=""><img th:src="@{/img/socialicons/facebook.png}" alt="facebook" /></a>
+				<a href=""><img th:src="@{/img/socialicons/pinterest.png}" alt="pinterest" /></a>
+				<a href=""><img th:src="@{/img/socialicons/twitter.png}" alt="twitter" /></a>
+				<a href=""><img th:src="@{/img/socialicons/instagram.png}" alt="instagram" /></a>
+			</div>
+			
 			<div class="float_right" id="cart_info">
-	
 	            <div th:if="${customer.anonymous}"  th:remove="tag">
-	
 	                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	                <span>Bel ons op 020-9876543</span>
 					&nbsp;|&nbsp;&nbsp;&nbsp; 
