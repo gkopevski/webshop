@@ -44,15 +44,15 @@ public class BillingInfoForm implements Serializable {
     
     private static final long serialVersionUID = 7408792703984771616L;
     
-    private Address address = new AddressImpl();
-    private String paymentMethod;
-    private String creditCardName;
-    private String creditCardNumber;
-    private String creditCardCvvCode;
-    private String creditCardExpMonth;
-    private String creditCardExpYear;
-    private String selectedCreditCardType;
-    private boolean useShippingAddress;
+    protected Address address = new AddressImpl();
+    protected String paymentMethod;
+    protected String creditCardName;
+    protected String creditCardNumber;
+    protected String creditCardCvvCode;
+    protected String creditCardExpMonth;
+    protected String creditCardExpYear;
+    protected String selectedCreditCardType;
+    protected boolean useShippingAddress;
 
     public BillingInfoForm() {
         address.setPhonePrimary(new PhoneImpl());

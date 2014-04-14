@@ -58,7 +58,7 @@ public class ShippingInfoFormValidator implements Validator {
         }
         
         if (shippingInfoForm.getAddress().getPhonePrimary() != null && !shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().trim().equals("") && !shippingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
-        	errors.rejectValue("address.phonePrimary", null, null, "phone.invalid");
+        	errors.rejectValue("address.phonePrimary", null, null, "Invalid phone format.");
         }
         
         

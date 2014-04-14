@@ -38,29 +38,53 @@ public class BillingInfoFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.addressLine1", "addressLine1.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.city", "city.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.postalCode", "postalCode.required");
-        
-        if (billingInfoForm.getAddress().getCountry() == null) {
-            errors.rejectValue("address.country", "country.required", null, null);
-        }
-        
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.phonePrimary", "phone.required");
+
+//        if (billingInfoForm.getAddress().getCountry() == null) {
+//            errors.rejectValue("address.country", "country.required", null, null);
+//        }
+
         String validPersonNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-?'.,/@!+:()]*";
         String validCompanyNameRegex = "^[a-zA-ZéëïóöüÉËÏÓÖÜ0-9?][a-zA-ZéëïóöüÉËÏÓÖÜ0-9-.',/+()#@!?]*";
         String validPhoneNumberRegex = "[a-zA-ZéëïóöüÉËÏÓÖÜ0-9-()+,*.#/]*";
         if (billingInfoForm.getAddress().getCountry() == null) {
             errors.rejectValue("address.country", "country.required", null, null);
         }
-        
+
         if (!billingInfoForm.getAddress().getFirstName().equals("") && !billingInfoForm.getAddress().getFirstName().matches(validPersonNameRegex)) {
             errors.rejectValue("address.firstName", null, null, "firstName.invalid");
         }
-        
+
         if (!billingInfoForm.getAddress().getLastName().equals("") && !billingInfoForm.getAddress().getLastName().matches(validPersonNameRegex)) {
             errors.rejectValue("address.lastName", null, null, "lastName.invalid");
         }
-        
-        if (billingInfoForm.getAddress().getPhonePrimary() != null && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().equals("") && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
-            errors.rejectValue("address.phonePrimary", null, null, "phone.invalid");
+
+        String text = null;
+
+        if (billingInfoForm.getAddress().getPhonePrimary() == null || billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().equals(""))
+            text = "Phone is required.";
+        else
+
+        {
+	        if (!billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex))
+	            text = "Phone is invalid.";
         }
+        
+        billingInfoForm.getAddress().getPrimaryPhone();
+        
+        if( text != null)
+        	errors.rejectValue("address.phonePrimary", null, null, text);
+
+//         if (billingInfoForm.getAddress().getPhonePrimary() == null)
+//             errors.rejectValue("address.phonePrimary", null, null, "it is null");
+ //
+//         if (billingInfoForm.getAddress().getPhonePrimary() != null && billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().trim().equals("vk")) {
+//             errors.rejectValue("address.phonePrimary", null, null, "vojdan");
+//         }
+
+//         if (billingInfoForm.getAddress().getPhonePrimary() != null && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().trim().equals("") && !billingInfoForm.getAddress().getPhonePrimary().getPhoneNumber().matches(validPhoneNumberRegex)) {
+//             errors.rejectValue("address.phonePrimary", null, null, "phone.invalid");
+//         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardName", "creditCardName.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCardNumber", "creditCardNumber.required");

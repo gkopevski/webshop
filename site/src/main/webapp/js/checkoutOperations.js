@@ -56,8 +56,10 @@ $(function(){
     $('body').on('click', 'input#use_shipping_address', function() {
         if ($(this).is(':checked')) {
             copyShippingForm();
+            alert("copyShippingForm();");
         } else {
             $(this).closest('form').find(".clearable").val("").removeAttr("disabled");
+            alert(".clearable");
         }
     });
 
