@@ -1,5 +1,5 @@
 <div th:remove="tag">
-            <div th:remove="all">
+	<div th:remove="all">
         <!--
              This template displays the navigation of the site by looking up the category named "Nav"
              and building a list of the categories sub-categories.                          
@@ -7,9 +7,41 @@
     </div>
     <blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="8" />
     
-    <ul>
-        <li th:each="category : ${navCategories}">
-            <a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
-        </li>
-    </ul>
+<!--     <ul> -->
+<!--         <li th:each="category : ${navCategories}"> -->
+<!--             <a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a> -->
+<!--         </li> -->
+<!--     </ul> -->
+
+	<h4>HUIDTYPE</h4>
+	<div class="newRow">&nbsp;</div>
+	<div><a href="">Anti Age</a></div>
+	<div><a href="">Pigmentatie</a></div>
+	<div><a href="">Vette Huid</a></div>
+	<div><a href="">Gecombineerde huid</a></div>
+	<div><a href="">Droge huid</a></div>
+	<div><a href="">Gevoelige huid</a></div>
+	<div><a href="">Capilares/Rosacea</a></div>
+	<div class="newRow">&nbsp;</div>
+	
+	<h4>PRODUCTEN</h4>
+	<div class="newRow">&nbsp;</div>
+	<div><a href="">Tonic &amp; Cleanser</a></div>
+	<div><a href="">Cleanser dry</a></div>
+	<div><a href="">Tonic lala</a></div>
+	<div><a href="">Tonic extra</a></div>
+	<div><a href="">Peeling</a></div>
+	<div><a href="">Creme</a></div>
+	<div><a href="">Serum</a></div>
+	<div><a href="">Masker</a></div>
+	<div><a href="">Oogcreme</a></div>
+	<div class="newRow">&nbsp;</div>
+	
+	<h4>SCIENCE PROOF</h4>
+	<div class="newRow">&nbsp;</div>
+	<div><a href="">Alpha lipoic serum</a></div>
+	<div><a href="">Vitamine C'ester</a></div>
+	<div><a href="">Fruitzuren</a></div>
+	<div><a href="">DMAE</a></div>
+	<div class="newRow">&nbsp;</div>
 </div>

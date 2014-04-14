@@ -14,10 +14,11 @@
         <nav th:substituteby="layout/partials/nav" />
     
         
-    		<blc:content contentType="Homepage Banner Ad" />       
-        <div id="banners" th:if="${contentItem}">
-            <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>        
-        </div>
+    		<blc:content contentType="Homepage Banner Ad" />
+    		<div id="banners" th:include="layout/partials/slider"></div>     
+<!--         <div id="banners" th:if="${contentItem}"> -->
+<!--             <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>         -->
+<!--         </div> -->
         <div class="newRow">&nbsp;</div>
         
         <section id="left_column">
@@ -31,12 +32,12 @@
     -->   
     
         
+            <div th:substituteby="catalog/partials/productPagingOptions"  />
         
             <ul id="products" class="group">
                 <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
             </ul>
             
-            <div th:substituteby="catalog/partials/productPagingOptions" />
             
         </section>
                 
@@ -51,15 +52,17 @@
                 
                 <section id="right_column">
 <!--                     <header><span th:text="#{category.featuredProducts}">Featured Products</span></header> -->
-                    <div id="options">
-                        <div class="section" th:object="${category}">
-                             <blc:related_products categoryId="*{id}" quantity="1"/>     
-                             <ul id="featured_products" class="group">
-                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-                             </ul>
-                        </div>                                  
-                    </div>
-                    <div class="newRow">&nbsp;</div>
+
+<!-- 					This is the featured product above the left menu -->
+<!--                     <div id="options"> -->
+<!--                         <div class="section" th:object="${category}"> -->
+<!--                              <blc:related_products categoryId="*{id}" quantity="1"/>      -->
+<!--                              <ul id="featured_products" class="group"> -->
+<!--                                 <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li> -->
+<!--                              </ul> -->
+<!--                         </div>                                   -->
+<!--                     </div> -->
+<!--                     <div class="newRow">&nbsp;</div> -->
                     
                     <div class="leftsidemenu">
 			        	<div th:substituteby="catalog/partials/sideMenu" />
