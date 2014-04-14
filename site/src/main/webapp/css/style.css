@@ -13,7 +13,7 @@ audio:not([controls]) { display: none; }
 
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
-body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-size: 12px; background: #FFFFFF; }
+body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-size: 12px; background: #FFFFFF; overflow-x: hidden;}
 
 ::-moz-selection { background: #9BA891; color: #fff; text-shadow: none; }
 ::selection { background: #9BA891; color: #fff; text-shadow: none; }
@@ -1836,7 +1836,8 @@ footer {
     background: none repeat scroll 0 0 #F7F7F7;
     */
     clear: both;
-    height: 300px;
+    height: 350px;
+    overflow: hidden;
     overflow: auto;
     padding: 20px;
     background: #e5e8df !important;
@@ -3255,6 +3256,11 @@ and (max-width : 480px) {
     text-align: left;
     width: 180px;
     padding: 20px;
+}
+.footerbox h4{font-size: 15px !important; margin-bottom: 30px;}
+.footerbox div{
+	clear: both;
+	margin: 10px 0;
 }
 
 .leftsidemenu{
