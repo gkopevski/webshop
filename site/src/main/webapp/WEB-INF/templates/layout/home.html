@@ -24,6 +24,9 @@
         <blc:content contentType="Homepage Middle Promo Snippet"/> 
         
         <ul id="slider">
+		    <li th:each="item : ${contentList}">
+		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a>
+<!-- 		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
 <!-- 		    <li th:each="item : ${contentList}"> -->
 <!--  		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
 <!-- 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a> -->
@@ -46,3 +49,7 @@
     
 </body>
 </html>
+
+<!-- 		    <li th:each="item : ${contentList}"> -->
+<!--  		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
+<!-- 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a> -->
