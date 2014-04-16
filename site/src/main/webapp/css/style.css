@@ -13,7 +13,7 @@ audio:not([controls]) { display: none; }
 
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
-body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-size: 12px; background: #FFFFFF; }
+body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-size: 12px; background: #FFFFFF; overflow-x: hidden;}
 
 ::-moz-selection { background: #9BA891; color: #fff; text-shadow: none; }
 ::selection { background: #9BA891; color: #fff; text-shadow: none; }
@@ -1485,7 +1485,7 @@ ul#payment_methods li {
 }
 
 .product_container .productActions{
-	border-top: 2px solid #DDDDDD;
+/* 	border-top: 2px solid #DDDDDD; */
     bottom: 0 !important;
     height: 20px;
     left: 0;
@@ -1495,8 +1495,8 @@ ul#payment_methods li {
 }
 
     #products li {
-    	border: 2px solid #DDDDDD;
-        width: 210px;
+/*     	border: 2px solid #DDDDDD; */
+        width: 220px;
         height: 380px;
         margin-bottom: 10px;
     	margin-left: 15px;
@@ -1519,7 +1519,7 @@ ul#payment_methods li {
         }
     
         #products li .image {
-            width: 210px;
+            width: 220px;
            /* height: 220px; */
             margin-bottom: 10px;
             overflow: hidden;
@@ -1547,12 +1547,12 @@ ul#payment_methods li {
             }
         
             #products li .image img {
-                width: 210px;
-                height: auto;
+               	height: 220px;
+   				max-width: 220px;
             }
         
         #products li .content {
-            width: 210px;
+            width: 220px;
             height: 88px;
             font: 13px/18px 'Georgia',serif;
             color: #999999;
@@ -1565,7 +1565,6 @@ ul#payment_methods li {
             font: 18px/21px 'Oxygen', Helvetica, sans-serif;
             margin-bottom: 7px;
             color: #262322;
-            display: none;
         }
         
             #products li .content .title a:link, #products li .content .title a:visited {
@@ -1836,7 +1835,8 @@ footer {
     background: none repeat scroll 0 0 #F7F7F7;
     */
     clear: both;
-    height: 300px;
+    height: 350px;
+    overflow: hidden;
     overflow: auto;
     padding: 20px;
     background: #e5e8df !important;
@@ -3256,25 +3256,31 @@ and (max-width : 480px) {
     width: 180px;
     padding: 20px;
 }
+.footerbox h4{font-size: 15px !important; margin-bottom: 30px;}
+.footerbox div{
+	clear: both;
+	margin: 10px 0;
+}
+.footerbox a{color: #7F877C !important;}
 
 .leftsidemenu{
-	background: #9ba891; /* Old browsers */
-	background: -moz-linear-gradient(left,  #9ba891 15%, #fafbfa 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(15%,#9ba891), color-stop(100%,#fafbfa)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  #9ba891 15%,#fafbfa 100%); /* IE10+ */
-	background: linear-gradient(to right,  #9ba891 15%,#fafbfa 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ba891', endColorstr='#fafbfa',GradientType=1 ); /* IE6-9 */
-
-	margin: -30px 0 0 20px;
+	background: #fafafa;
     width: 200px;
-	padding: 10px 0 10px 10px;
-    width: 214px;
-    height: 370px;
-	
+	padding: 25px 25px 30px; 	
 }
-
+.leftsidemenu h4{
+	color: #959595;
+	border-bottom: 2px dashed #959595;
+	font-family: HelveticaNeueUltraLight !important;
+	float:left;
+	font-size: 18px;
+	margin: 10px 0 0;
+}
+.leftsidemenu div{
+	margin: 8px 0;
+}
+.leftsidemenu a{color: #959595 !important;}
+/* Old left side menu
 .leftsidemenu ul{
 	list-style-type: none;
 	padding: 5px !important;
@@ -3308,7 +3314,7 @@ and (max-width : 480px) {
 	transition: color 0.2s ease-in 0s;
 	color: #DDDDDD;
 }
-
+*/
 .footerImg{
 	float: left;
 	margin: -10px 50px 0 0;
@@ -3382,4 +3388,9 @@ and (max-width : 480px) {
 }
 #searchIcon{
 	cursor: pointer;
+}
+
+@font-face {
+    font-family: HelveticaNeueUltraLight;
+    src: url("../fonts/Helvetica Neue UltraLight.ttf") /* TTF file for CSS3 browsers */
 }

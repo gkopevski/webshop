@@ -27,10 +27,13 @@
 		    <li th:each="item : ${contentList}">
 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a>
 <!-- 		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
+<!-- 		    <li th:each="item : ${contentList}"> -->
+<!--  		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
+<!-- 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a> -->
 <!-- 		        <a th:href="@{/register}" th:if="${contentItem}" style="text-decoration:none"> -->
 <!-- 		            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div> -->
 <!-- 		        </a> -->
-		    </li>
+<!-- 		    </li> -->
 		</ul>
 
         
@@ -46,3 +49,7 @@
     
 </body>
 </html>
+
+<!-- 		    <li th:each="item : ${contentList}"> -->
+<!--  		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
+<!-- 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a> -->
