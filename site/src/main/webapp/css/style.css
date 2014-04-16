@@ -1427,7 +1427,10 @@ ul#payment_methods li {
      padding: 4px 20px !important;
      color: #FFFFFF !important;
 }
-
+.addToCart:hover{
+	background: #111111 !important;
+	transition: background-color 0.1s ease-in 0s;
+}
 #product_content {
     width: 450px;
     height: 450px;
@@ -1981,7 +1984,7 @@ input[type="submit"].red, a.red-button, a.addToCarztz, .addToCarztz {
 /* 	background: -ms-linear-gradient(top, #b5b5b5 10%,#86858a 90%) !important; IE10+ */
 /* 	background: linear-gradient(to bottom, #b5b5b5 10%,#86858a 90%) !important; W3C */
 	background: #7f877c !important;
-	transition: background-color 0.2s ease-in 0s;
+	transition: background-color 0.1s ease-in 0s;
 }
 
 input[type="submit"].dark, a.dark-button, #featured_products .addToCarztz {
@@ -2006,23 +2009,16 @@ input[type="submit"].small:hover, a.small-button:hover,
 }
 
 input[type="submit"].red:hover, a.red-button:hover, .addToCarzt:hover {
-    background: #bcc5b5; /* Old browsers */
-	background: -moz-linear-gradient(top, #bcc5b5 10%, #9ca891 90%) !important; /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,#bcc5b5), color-stop(90%,#9ca891)) !important;  /*Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #bcc5b5 10%,#9ca891 90%) !important; /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #bcc5b5 10%,#9ca891 90%) !important; /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #bcc5b5 10%,#9ca891 90%) !important; /* IE10+ */
-	background: linear-gradient(to bottom, #bcc5b5 10%,#9ca891 90%) !important; /* W3C */
 	background: #111111 !important;
-	transition: background-color 0.2s ease-in 0s;
+	transition: background-color 0.1s ease-in 0s;
 }
 
 input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
-    background-color: #333333;
+    background-color: #111111;
 }
 
 input[type="submit"].dark:hover, a.dark-button:hover, #featured_products .addToCarztz:hover {
-    background-color: #333333;
+    background-color: #111111;
 }
 
 button[disabled]:hover, input[disabled]:hover { 
@@ -3370,14 +3366,14 @@ and (max-width : 480px) {
     padding: 1px 3px;
     border: 0 none;
     border-radius: 3px;
-    transition: background-color 0.2s ease-in 0s;
+    transition: background-color 0.1s ease-in 0s;
     font-size: 11px;
     font-weight: bold;
 }
 
 .updateQuantity:hover{
 	background-color: #333333;
-	transition: background-color 0.2s ease-in 0s;
+	transition: background-color 0.1s ease-in 0s;
 }
 
 .productpage_content{
