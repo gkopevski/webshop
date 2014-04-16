@@ -1405,13 +1405,14 @@ ul#payment_methods li {
 
 .add_to_cart, .in_cart {
     display: block;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .addToCart{
-	background:none!important;
-     border:none; 
-     padding:0!important;
+	background: #7f877c !important;
+     border: none; 
+     padding: 4px 20px !important;
+     color: #FFFFFF !important;
 }
 
 #product_content {
@@ -1486,25 +1487,28 @@ ul#payment_methods li {
 
 .product_container .productActions{
 /* 	border-top: 2px solid #DDDDDD; */
-    bottom: 0 !important;
-    height: 20px;
-    left: 0;
-    position: absolute;
+/*     bottom: 0 !important; */
+/*     height: 20px; */
+/*     left: 0; */
+/*     position: absolute; */
+/*     padding-top: 5px; */
     width: 100%;
-    padding-top: 5px;
 }
 
     #products li {
-/*     	border: 2px solid #DDDDDD; */
         width: 220px;
         height: 380px;
-        margin-bottom: 10px;
-    	margin-left: 15px;
-   		padding: 5px;
+        margin: 0 10px 20px 13px;
+   		padding: 5px 1px;
         text-align: center;
         float: left;
         display: inline;
         position: relative;
+    }
+    
+    #products li:hover{
+    	padding: 4px 0px;
+    	border: 1px solid #DDDDDD;
     }
     
         #products li .new_badge {
@@ -1536,14 +1540,16 @@ ul#payment_methods li {
                 padding: 0;
             }
         
-            #products li .image .price {
-			    bottom: 30px;
-			    color: #407A3A;
-			    font: 600 16px/16px 'Open Sans',Helvetica,sans-serif;
+            #products li .price {
+/* 			    bottom: 30px; */
+			    color: #000000;
+			    font: bold 18px ArialNarrow !important;
 			    opacity: 0.8;
-			    padding: 10px 20px;
-			    position: absolute;
-			    right: 65px;
+/* 			    padding: 10px 20px; */
+/* 			    position: absolute; */
+/* 			    right: 65px; */
+				margin: 3px auto;
+			    font-weight: bold;
             }
         
             #products li .image img {
@@ -1562,9 +1568,15 @@ ul#payment_methods li {
         
         #products li .content .title {
             width: 210px;
-            font: 18px/21px 'Oxygen', Helvetica, sans-serif;
+            font: 16px ArialNarrow;
             margin-bottom: 7px;
-            color: #262322;
+            color: #111111;
+            font-weight: bold;
+			text-transform: uppercase;
+        }
+        
+        #products li .content .description{
+        	padding: 2px 0;
         }
         
             #products li .content .title a:link, #products li .content .title a:visited {
@@ -3392,5 +3404,9 @@ and (max-width : 480px) {
 
 @font-face {
     font-family: HelveticaNeueUltraLight;
-    src: url("../fonts/Helvetica Neue UltraLight.ttf") /* TTF file for CSS3 browsers */
+    src: url("../fonts/HelveticaNeueLTStd-UltLt.otf") /* TTF file for CSS3 browsers */
+}
+@font-face {
+    font-family: ArialNarrow;
+    src: url("../fonts/arialn.ttf") /* TTF file for CSS3 browsers */
 }

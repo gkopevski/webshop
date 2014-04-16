@@ -2,22 +2,24 @@
 
 <div class="image">
     <a th:href="@{*{url}}">
-    <img th:if="*{media['primary']}" th:src="@{*{media['primary'].url} + '?browse'}" alt="Sauce Image" />
-    <div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-        <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
-        <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-    </div>
-    <div class="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-        <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
-        <div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-    </div>
+	    <img th:if="*{media['primary']}" th:src="@{*{media['primary'].url} + '?browse'}" alt="Sauce Image" />
+	    <div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
+	        <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
+	        <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+	    </div>
     </a>
 </div>
 
 <div class="content">
     <div class="title" th:text="*{name}"></div>
-    <p th:utext="*{longDescription}"></p>
+    <div class="description" th:utext="*{longDescription}"></div>
 </div>
+
+<div class="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
+    <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+    <div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+</div>
+
 
 <div th:class="*{'productActions productActions' + id}">
 
