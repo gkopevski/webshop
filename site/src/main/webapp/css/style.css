@@ -18,9 +18,9 @@ body { margin: 0; font-family: Helvetica,Arial,Verdana,Geneva,sans-serif; font-s
 ::-moz-selection { background: #9BA891; color: #fff; text-shadow: none; }
 ::selection { background: #9BA891; color: #fff; text-shadow: none; }
 
-a { text-decoration: none;} 
-a:visited { color: #8F8489; }
-/* a:hover { text-decoration: underline; } */
+a { text-decoration: none; color:#999999; /*#afc5a0;*/ } 
+/* a:visited { color: #8F8489; } */
+a:hover { text-decoration: none; color:#88AA88; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
 
@@ -103,12 +103,14 @@ textarea {
 
 
 
-input[type="text"], input[type="email"], input[type="password"], textarea {
-    background: none repeat scroll 0 0 #F5F1F1 !important;
+input[type="text"], input[type="email"], input[type="password"],input[type="tel"], textarea {
+/*     background: none repeat scroll 0 0 #F5F1F1 !important; */
     border: 1px solid #CCCCCC !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    padding: 3px !important;
+/*     padding: 3px !important; */
+    height: 15px;
+    padding: 7px 5px !important;
 }
 
 .field100, .field66, .field50, .field35, .field30, .field25 {
@@ -394,7 +396,7 @@ header {
     }
     
     #header_content #cart_info a:link, #header_content #cart_info a:visited {
-        color: #828285;
+/*         color: #828285; */
     }
     
     header #header_content #cart_info a.my-account {
@@ -876,11 +878,13 @@ li.promotion,  ul.promotion{
     width: 900px;
     margin: 10px 0;
     padding: 10px;
-    font: 14px/18px 'Oxygen', Helvetica, sans-serif;
-    background-color: #9BA891;
-    color: #fff;
+    font: bold 20px 'ArialNarrow',Oxygen, Helvetica, sans-serif;
     float: left;
     display: block;
+/*     background-color: #979C8D; */
+/*     color: #fff; */
+    border-bottom: 1px solid #111111;
+    color: #111111;
 }
 
 .cart_title a {margin-left: 6px;}
@@ -956,11 +960,12 @@ li.promotion,  ul.promotion{
         }
     
     #cart_products tbody tr td.name {
-        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+        font: 16px 'ArialNarrow','Oxygen', Helvetica, sans-serif;
     }
     
         #cart_products tbody tr td.name a {
             text-decoration: none;
+            color: #999999 !important;
         }
     
     #cart_products tbody tr td.value {
@@ -1110,7 +1115,7 @@ li.promotion,  ul.promotion{
     width: 260px;
     padding: 10px 20px;
 /*     background: url('../img/sidebarbg.jpg') repeat; */
-    background-color: #C9D4C0;
+    background-color: #E5E8DF;
     float: right;
 }
 
@@ -1596,7 +1601,7 @@ ul#payment_methods li {
         }
         
             #products li .content .title a:link, #products li .content .title a:visited {
-                color: #262322;
+/*                 color: #262322; */
                 text-decoration: none;
             }
         
@@ -1846,7 +1851,7 @@ ul#payment_methods li {
         }
         
             #featured_products li .content .title a:link, #featured_products li .content .title a:visited {
-                color: #262322;
+/*                 color: #262322; */
                 text-decoration: none;
             }
         
@@ -2077,7 +2082,7 @@ and (max-width : 480px) {
     
     #header_content #cart_info a:link, #header_content #cart_info a:visited {
         font-size: 12px;
-        color: #828285;
+/*         color: #828285; */
         text-decoration: none;
     }
     
@@ -2124,7 +2129,7 @@ and (max-width : 480px) {
         }
             
             nav ul li a:link, nav ul li a:visited {
-                color: #342020;
+/*                 color: #342020; */
                 text-decoration: none;
                 text-transform: uppercase;
             }
@@ -2338,7 +2343,7 @@ and (max-width : 480px) {
         }
         
             #products li .content .title a:link, #products li .content .title a:visited {
-                color: #262322;
+/*                 color: #262322; */
                 text-decoration: none;
             }
         
@@ -2481,7 +2486,7 @@ and (max-width : 480px) {
         }
         
             #featured_products li .content .title a:link, #featured_products li .content .title a:visited {
-                color: #262322;
+/*                 color: #262322; */
                 text-decoration: none;
             }
             
@@ -2814,12 +2819,12 @@ and (max-width : 480px) {
     position: relative;
     padding: 0;
     margin: 0;
-    background: #f9f9f9;
+    background: #FFFFFF;
     color: #444;
     text-shadow: none;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+/*     -webkit-border-radius: 4px; */
+/*        -moz-border-radius: 4px; */
+/*             border-radius: 4px; */
 }
 
 .fancybox-opened {
@@ -3360,19 +3365,19 @@ and (max-width : 480px) {
 }
 
 .updateQuantity{
-	background-color: #999999;
+	background-color: #7F877C;
     color: #FFFFFF;
     margin: 3px 0 1px;
-    padding: 1px 3px;
+    padding: 2px 5px;
     border: 0 none;
-    border-radius: 3px;
     transition: background-color 0.1s ease-in 0s;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
+    text-transform:uppercase;
 }
 
 .updateQuantity:hover{
-	background-color: #333333;
+	background-color: #111111 !important;
 	transition: background-color 0.1s ease-in 0s;
 }
 
