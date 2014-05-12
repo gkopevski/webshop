@@ -1,4 +1,7 @@
 <div class="section">
-    <blc:content contentType="Right Hand Side Banner Ad" />  
-    <a th:if="${contentItem}"  th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" /></a>
+    <blc:content contentName="goran asprovski"/>
+    <a th:if="${contentItem}" th:href="@{${contentItem['customTargetUrl']}}">
+        <img th:src="@{${contentItem['customImageUrl']}}"/></a>
+    <a th:if="${contentItem}" th:href="@{${contentItem['customRandomText']}}">
+        <img th:src="@{${contentItem['customTargetUrl']}}"/></a>
 </div>

@@ -20,24 +20,14 @@
 <!--         <div id="banners" th:if="${contentItem}"> -->
 <!--             <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>         -->
 <!--         </div> -->
-        
-        <blc:content contentType="Homepage Middle Promo Snippet"/> 
-        
-        <ul id="slider">
-		    <li th:each="item : ${contentList}">
-		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a>
-<!-- 		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
-<!-- 		    <li th:each="item : ${contentList}"> -->
-<!--  		        <a th:href="@{${item['targetUrl']}}"><img th:src="@{${item['imageUrl']}}" /></a> -->
-<!-- 		        <a th:href="@{${item['htmlContent']}}"><div id="home_feature" th:utext="@{${item['htmlContent']}}"></div></a> -->
-<!-- 		        <a th:href="@{/register}" th:if="${contentItem}" style="text-decoration:none"> -->
-<!-- 		            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div> -->
-<!-- 		        </a> -->
-		    </li>
-		</ul>
+        <blc:content contentType="Homepage Middle Promo Snippet"/>
+        <div th:substituteby="catalog/partials/rightHandBannerAds" />
+
 
         
-        <blc:content contentType="Homepage Featured Products Title" />    
+        <blc:content contentType="Homepage Featured Products Title" />
+
+
         <div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
         
         <ul id="products" class="group">
