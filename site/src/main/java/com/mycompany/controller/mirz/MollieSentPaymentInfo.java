@@ -8,12 +8,14 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.profile.core.domain.PhoneImpl;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,14 +27,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.List;
-
-import org.broadleafcommerce.core.order.domain.Order;
 /**
  * Created by gkopevski on 5/20/14.
  */
 @Controller
-@RequestMapping("/mollie/paymentinfo")
+@RequestMapping("/mollie")
 public class MollieSentPaymentInfo {
 
 
@@ -41,66 +40,29 @@ public class MollieSentPaymentInfo {
     protected EntityManager em;
 
     @Transactional("blTransactionManager")
-    @RequestMapping(value = "/testonly",
+    @RequestMapping(value = "/checkout",
             method = {RequestMethod.GET})
     public String testGet() {
         try {
-//            Gson gson  = new Gson();
-
-//            em.getTransaction().begin();
-//            Session hSession=em.unwrap(Session.class);
-
-//            hSession.beginTransaction();
-            PhoneImpl phone = new PhoneImpl();
-            phone.setPhoneNumber("070 949 363");
-
-            em.persist(phone);
-//            hSession.flush();
-//            hSession.close();
-//            em.flush();
-//            em.getTransaction().commit();
-
-//            return mirDoGet();
+            return mirDoGet();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
     }
 
-
-    @RequestMapping(value = "/testonlyPost",
+    @RequestMapping(value = "/process",
             method = {RequestMethod.GET})
-    public String testPost1(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            int i = 1;
-            i = i+1;
-            printParameters(request);
-
-//            custom query
-
-            Session hSession=em.unwrap(Session.class);
-
-            PhoneImpl phone = new PhoneImpl();
-            phone.setPhoneNumber("070 949 363");
-
-            hSession.save(phone);
-
-            return "redirect:/cart";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public String testGet(HttpServletRequest request, HttpServletResponse response) {
         return "";
     }
 
-    @RequestMapping(value = "/testonlyPost",
+
+    @RequestMapping(value = "/process",
             method = {RequestMethod.POST})
     public String testPost(HttpServletRequest request, HttpServletResponse response) {
         try {
-            int i = 1;
-            i = i+1;
             printParameters(request);
-
-
 
             String paymentId = request.getParameter("id");
             HttpClient httpClient = new DefaultHttpClient();
@@ -143,7 +105,7 @@ public class MollieSentPaymentInfo {
     }
 
 
-
+    @Transactional("blTransactionManager")
     public String mirDoGet() {
 
         HttpClient httpClient = new DefaultHttpClient();
@@ -151,15 +113,19 @@ public class MollieSentPaymentInfo {
         try {
             HttpPost requestV = new HttpPost("https://api.mollie.nl/v1/payments");
 
+
+            Order cart = CartState.getCart();
+            em.persist(cart);
+
             StringEntity params = new StringEntity(
                     "{\"amount\":\"" +
-//                            cart.getTotal() +
-                            "101.00" +
+                            cart.getTotal() +
+//                            "101.00" +
                             "\",\"redirectUrl\":\"" +
-                            "http://88.85.115.54/mollie/paymentinfo/testonlyPost" +
+                            "http://88.85.115.54/cart?id=" + cart.getId() +
                             "\",\"description\":\"" +
-                            //cart.getOrderNumber() +
-                            "Pharmaskincare.nl" +
+                            "Order #:" + cart.getOrderNumber() +
+                            ", Pharmaskincare.nl" +
                             //"Order #40029" +
                             "\"}"
             ); // I've removed details

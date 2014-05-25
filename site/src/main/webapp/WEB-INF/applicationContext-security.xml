@@ -91,8 +91,8 @@
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
         <property name="excludedRequestPatterns">
             <list>
-                <value>/mollie/paymentinfo/testonly</value>
-                <value>/mollie/paymentinfo/testonlyPost</value>
+                <value>/mollie/checkout</value>
+                <value>/mollie/process</value>
             </list>
         </property>
     </bean>
