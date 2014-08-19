@@ -86,9 +86,17 @@
                                           JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
                                           JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
                                           WHERE USER_NAME=?" />
-    
-    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
-                                          
+
+
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
+        <property name="excludedRequestPatterns">
+            <list>
+                <value>/mollie/checkout</value>
+                <value>/mollie/process</value>
+            </list>
+        </property>
+    </bean>
+
     <!-- Sets the login failure URL -->
     <bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
         <constructor-arg value="/login?error=true" />
@@ -117,6 +125,8 @@
    <bean id="blCustomerService" class="org.broadleafcommerce.profile.core.service.CustomerServiceImpl">
       <property name="salt" value="mir!" />
    </bean>
-    
+
+
+
     
 </beans>

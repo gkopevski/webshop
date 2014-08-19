@@ -18,9 +18,9 @@
               minEvictableIdleTimeMillis="30000"
               jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
               username="root"
-              password="Tphalo8c"
+              password=""
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://88.85.115.54:3306/broadleaf"/>
+              url="jdbc:mysql://localhost:3306/broadleaf"/>
 
     <Resource name="jdbc/storage"
               auth="Container"
@@ -40,9 +40,9 @@
               minEvictableIdleTimeMillis="30000"
               jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
               username="root"
-              password="Tphalo8c"
+              password=""
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://88.85.115.54:3306/broadleaf"/>
+              url="jdbc:mysql://localhost:3306/broadleaf"/>
 
     <Resource name="jdbc/secure"
               auth="Container"
@@ -62,7 +62,7 @@
               minEvictableIdleTimeMillis="30000"
               jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
               username="root"
-              password="Tphalo8c"
+              password=""
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://88.85.115.54:3306/broadleaf"/>
+              url="jdbc:mysql://localhost:3306/broadleaf"/>
 </Context>

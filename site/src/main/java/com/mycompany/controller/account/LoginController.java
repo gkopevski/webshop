@@ -228,7 +228,6 @@ public class LoginController extends BroadleafLoginController {
             fpst.setToken(passwordEncoder.encodePassword(token, salt.getSalt(principal)));
             fpst.setCreateDate(SystemTime.asDate());
             
-//            em.merge(fpst);
             //GK: custom database insert/update
             //GK: custom query
             Session hSession=em.unwrap(Session.class);

@@ -1,3 +1,4 @@
+ 
 package mollie;
 
 public class PaymentInformationModel {
@@ -163,3 +164,4 @@ public class PaymentInformationModel {
 	
 	
 }
+
